@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package gsbvisiteur.Vue;
+package vue;
 
 /**
  *
@@ -48,9 +48,8 @@ public class JFrameCR extends javax.swing.JFrame {
         jButtonDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(520, 450));
 
-        jLabelRV.setText("Rapports de visite");
+        jLabelRV.setText("RAPPORTS DE VISITE");
 
         jLabelNum.setText("Numéro Rapport");
 

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[520, 450]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -153,7 +150,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelRV">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Rapports de visite"/>
+        <Property name="text" type="java.lang.String" value="RAPPORTS DE VISITE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNum">

@@ -2,18 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package gsbvisiteur.Vue;
+package vue;
 
 /**
  *
  * @author btssio
  */
-public class JFramePraticien extends javax.swing.JFrame {
+public class JFrameVisiteur extends javax.swing.JFrame {
 
     /**
      * Creates new form JFramePraticien
      */
-    public JFramePraticien() {
+    public JFrameVisiteur() {
         initComponents();
     }
 
@@ -26,7 +26,7 @@ public class JFramePraticien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelPraticien = new javax.swing.JLabel();
+        jLabelVisiteurs = new javax.swing.JLabel();
         jComboBoxChercher = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         jTextFieldNom = new javax.swing.JTextField();
@@ -49,7 +49,7 @@ public class JFramePraticien extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelPraticien.setText("PRATICIEN");
+        jLabelVisiteurs.setText("VISITEURS");
 
         jComboBoxChercher.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -126,14 +126,14 @@ public class JFramePraticien extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelPraticien)
+                .addComponent(jLabelVisiteurs)
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabelPraticien)
+                .addComponent(jLabelVisiteurs)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxChercher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,20 +194,20 @@ public class JFramePraticien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFramePraticien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameVisiteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFramePraticien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameVisiteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFramePraticien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameVisiteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFramePraticien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameVisiteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFramePraticien().setVisible(true);
+                new JFrameVisiteur().setVisible(true);
             }
         });
     }
@@ -222,10 +222,10 @@ public class JFramePraticien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelChercher;
     private javax.swing.JLabel jLabelLabo;
     private javax.swing.JLabel jLabelNom;
-    private javax.swing.JLabel jLabelPraticien;
     private javax.swing.JLabel jLabelPrenom;
     private javax.swing.JLabel jLabelSecteur;
     private javax.swing.JLabel jLabelVille;
+    private javax.swing.JLabel jLabelVisiteurs;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextFieldAdresse;
     private javax.swing.JTextField jTextFieldCP;
