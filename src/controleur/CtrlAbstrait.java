@@ -14,10 +14,11 @@ import vue.VueAbstraite;
 public abstract class CtrlAbstrait {
     
     protected VueAbstraite vue = null;
-    protected CtrlGCR ctrlPrincipal = null;
+  
+    
 
-    protected CtrlAbstrait(CtrlGCR ctrlPrincipal) {
-        this.ctrlPrincipal = ctrlPrincipal;
+    protected CtrlAbstrait() {
+      
     }
     
      
@@ -29,13 +30,6 @@ public abstract class CtrlAbstrait {
         this.vue = vue;
     }
 
-    public CtrlGCR getCtrlPrincipal() {
-        return (CtrlGCR)ctrlPrincipal;
-    }
-
-    public void setCtrlPrincipal(CtrlGCR ctrlPrincipal) {
-        this.ctrlPrincipal = ctrlPrincipal;
-    }
     
     
 
