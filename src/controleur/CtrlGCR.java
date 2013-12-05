@@ -10,4 +10,8 @@ package controleur;
  */
 public class CtrlGCR {
     
+    private CtrlConnexion ctrlConnexion = null;
+    
+  
+    
 }
