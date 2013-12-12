@@ -34,6 +34,7 @@ public class FabriqueJdbc {
                 propertiesJdbc.getProperty("base"),
                 propertiesJdbc.getProperty("utilisateur"),
                 propertiesJdbc.getProperty("mdp"));
+        
     }
     
 }
