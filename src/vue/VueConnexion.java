@@ -5,6 +5,10 @@
 package vue;
 
 import controleur.CtrlAbstrait;
+import controleur.CtrlConnexion;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,11 +34,12 @@ public class VueConnexion extends VueAbstraite {
 
         jLabelConnexion = new javax.swing.JLabel();
         jTextFieldIdentifiant = new javax.swing.JTextField();
-        jTextFieldPwd = new javax.swing.JTextField();
         jLabelIdentifiant = new javax.swing.JLabel();
         jLabelPwd = new javax.swing.JLabel();
         jButtonConnexion = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonQuitter = new javax.swing.JButton();
+        jPasswordFieldPwd = new javax.swing.JPasswordField();
+        jLabelErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,8 +51,18 @@ public class VueConnexion extends VueAbstraite {
         jLabelPwd.setText("Mot de passe:");
 
         jButtonConnexion.setText("Connexion");
+        jButtonConnexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConnexionActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Quitter");
+        jButtonQuitter.setText("Quitter");
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuitterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,29 +70,26 @@ public class VueConnexion extends VueAbstraite {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelConnexion))
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelConnexion)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 79, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonQuitter, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(132, 132, 132)
-                                        .addComponent(jLabelIdentifiant)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabelIdentifiant)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldIdentifiant, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabelPwd)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonConnexion)))
-                        .addGap(0, 40, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPasswordFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonConnexion))
+                            .addComponent(jLabelErreur, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,25 +103,50 @@ public class VueConnexion extends VueAbstraite {
                     .addComponent(jLabelIdentifiant))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPwd)
-                    .addComponent(jButtonConnexion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                    .addComponent(jButtonConnexion)
+                    .addComponent(jPasswordFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelErreur)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(jButtonQuitter)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        ((CtrlConnexion)controleur).quitter();
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
+
+    private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
+        ((CtrlConnexion)controleur).seConnecter();
+    }//GEN-LAST:event_jButtonConnexionActionPerformed
+
+    public JTextField getjTextFieldIdentifiant() {
+        return jTextFieldIdentifiant;
+    }
+
+    public JPasswordField getjPasswordFieldPwd() {
+        return jPasswordFieldPwd;
+    }
+
+    public JLabel getjLabelErreur() {
+        return jLabelErreur;
+    }
+
+    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonConnexion;
+    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JLabel jLabelConnexion;
+    private javax.swing.JLabel jLabelErreur;
     private javax.swing.JLabel jLabelIdentifiant;
     private javax.swing.JLabel jLabelPwd;
+    private javax.swing.JPasswordField jPasswordFieldPwd;
     private javax.swing.JTextField jTextFieldIdentifiant;
-    private javax.swing.JTextField jTextFieldPwd;
     // End of variables declaration//GEN-END:variables
 }

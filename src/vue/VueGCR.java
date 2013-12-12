@@ -4,7 +4,7 @@
  */
 package vue;
 
-import controleur.CtrlAbstrait;
+import controleur.*;
 
 /**
  *
@@ -43,6 +43,36 @@ public class VueGCR extends VueAbstraite {
         jLabelGCR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonCR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCRActionPerformed(evt);
+            }
+        });
+
+        jButtonVisiteurs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVisiteursActionPerformed(evt);
+            }
+        });
+
+        jButtonPraticiens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPraticiensActionPerformed(evt);
+            }
+        });
+
+        jButtonMedicaments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMedicamentsActionPerformed(evt);
+            }
+        });
+
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuitterActionPerformed(evt);
+            }
+        });
 
         jLabelCR.setText("Comptes - Rendus");
 
@@ -136,6 +166,26 @@ public class VueGCR extends VueAbstraite {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCRActionPerformed
+        ((CtrlGCR)controleur).OuvrirVueCR();
+    }//GEN-LAST:event_jButtonCRActionPerformed
+
+    private void jButtonVisiteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVisiteursActionPerformed
+        ((CtrlGCR)controleur).OuvrirVueVisiteur();
+    }//GEN-LAST:event_jButtonVisiteursActionPerformed
+
+    private void jButtonPraticiensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPraticiensActionPerformed
+        ((CtrlGCR)controleur).OuvrirVuePraticien();
+    }//GEN-LAST:event_jButtonPraticiensActionPerformed
+
+    private void jButtonMedicamentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedicamentsActionPerformed
+        ((CtrlGCR)controleur).OuvrirVueMedicament();
+    }//GEN-LAST:event_jButtonMedicamentsActionPerformed
+
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        ((CtrlGCR)controleur).Quitter();
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
