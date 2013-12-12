@@ -36,7 +36,7 @@ public class GSBVisiteur {
         
         // 1- instancier le singleton de connexion Jdbc en fonction d'un fichier de paramètres
         // La classe Jdbc étant un singleton, la connexion s'obtient ainsi :
-         Jdbc.getInstance().getConnexion();
+         //Jdbc.getInstance().getConnexion();
         // La connexion est utilisée dans les classes Dao
         try {
             FabriqueJdbc.creer(ficPropertiesJdbc);

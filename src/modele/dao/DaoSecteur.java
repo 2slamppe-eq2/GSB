@@ -11,7 +11,7 @@ import modele.metier.*;
  *
  * @author btssio
  */
-public class DaoSecteur implements DaoInterface<Secteur, Integer>{
+public class DaoSecteur implements DaoInterface<Secteur, String>{
 
     @Override
     public int create(Secteur objetMetier) throws Exception {
@@ -19,7 +19,7 @@ public class DaoSecteur implements DaoInterface<Secteur, Integer>{
     }
 
     @Override
-    public Secteur getOne(Integer idMetier) throws Exception {
+    public Secteur getOne(String idMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -29,12 +29,12 @@ public class DaoSecteur implements DaoInterface<Secteur, Integer>{
     }
 
     @Override
-    public int update(Integer idMetier, Secteur objetMetier) throws Exception {
+    public int update(String idMetier, Secteur objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int delete(Integer idMetier) throws Exception {
+    public int delete(String idMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

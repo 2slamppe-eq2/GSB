@@ -10,7 +10,7 @@ import modele.metier.*;
  *
  * @author btssio
  */
-public class DaoLabo implements DaoInterface<Labo, Integer>{
+public class DaoLabo implements DaoInterface<Labo, String>{
 
     @Override
     public int create(Labo objetMetier) throws Exception {
@@ -18,7 +18,7 @@ public class DaoLabo implements DaoInterface<Labo, Integer>{
     }
 
     @Override
-    public Labo getOne(Integer idMetier) throws Exception {
+    public Labo getOne(String idLabo) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -28,12 +28,12 @@ public class DaoLabo implements DaoInterface<Labo, Integer>{
     }
 
     @Override
-    public int update(Integer idMetier, Labo objetMetier) throws Exception {
+    public int update(String idLabo, Labo objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int delete(Integer idMetier) throws Exception {
+    public int delete(String idLabo) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
