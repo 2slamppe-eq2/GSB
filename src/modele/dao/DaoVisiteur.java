@@ -52,7 +52,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
         ArrayList<Visiteur> result = new ArrayList<Visiteur>();
         ResultSet rs;
         
-        String requete = "SELECT * FROM Visiteur";
+        String requete = "SELECT * FROM Visiteur ORDER BY VIS_NOM";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
             rs = ps.executeQuery();

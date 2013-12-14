@@ -111,7 +111,7 @@ public class Visiteur {
 
     @Override
     public String toString() {
-        return "Visiteur{" + "matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", CP=" + CP + ", ville=" + ville + ", dateEmbauche=" + dateEmbauche + ", labo=" + labo + ", secteur=" + secteur + '}';
+        return this.getNom()+ "   "+this.getPrenom();
     }
     
     

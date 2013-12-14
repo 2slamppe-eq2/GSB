@@ -5,6 +5,9 @@
 package vue;
 
 import controleur.CtrlAbstrait;
+import controleur.CtrlPraticien;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -88,6 +91,11 @@ public class VuePraticien extends VueAbstraite {
         jButtonSuivant.setText("Suivant");
 
         jButtonFermer.setText("Fermer");
+        jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFermerActionPerformed(evt);
+            }
+        });
 
         jButtonOK.setText("OK");
 
@@ -102,6 +110,11 @@ public class VuePraticien extends VueAbstraite {
         jButtonSuivant1.setText("Suivant");
 
         jButtonFermer1.setText("Fermer");
+        jButtonFermer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFermer1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,6 +239,22 @@ public class VuePraticien extends VueAbstraite {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
+        try {
+            ((CtrlPraticien)controleur).quitter();
+        } catch (Exception ex) {
+            Logger.getLogger(VuePraticien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonFermerActionPerformed
+
+    private void jButtonFermer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermer1ActionPerformed
+        try {
+            ((CtrlPraticien)controleur).quitter();
+        } catch (Exception ex) {
+            Logger.getLogger(VuePraticien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonFermer1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFermer;

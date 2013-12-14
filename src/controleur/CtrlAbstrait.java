@@ -14,11 +14,12 @@ import vue.VueAbstraite;
 public abstract class CtrlAbstrait {
     
     protected VueAbstraite vue = null;
+    protected CtrlPrincipal ctrlPrincipal = null;
   
     
 
-    protected CtrlAbstrait() {
-      
+    protected CtrlAbstrait(CtrlPrincipal ctrlPrincipal) {
+        this.ctrlPrincipal = ctrlPrincipal;
     }
     
      

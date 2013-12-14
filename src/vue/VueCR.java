@@ -5,6 +5,9 @@
 package vue;
 
 import controleur.CtrlAbstrait;
+import controleur.CtrlCR;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -87,6 +90,11 @@ public class VueCR extends VueAbstraite{
         jButtonNouveau.setText("Nouveau");
 
         jButtonFermer.setText("Fermer");
+        jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFermerActionPerformed(evt);
+            }
+        });
 
         jComboBoxPraticien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -192,6 +200,14 @@ public class VueCR extends VueAbstraite{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
+        try {
+            ((CtrlCR)controleur).quitter();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonFermerActionPerformed
 
     
    

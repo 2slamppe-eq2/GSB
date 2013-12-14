@@ -5,6 +5,8 @@
 package vue;
 
 import controleur.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -168,23 +170,43 @@ public class VueGCR extends VueAbstraite {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCRActionPerformed
-        ((CtrlGCR)controleur).OuvrirVueCR();
+        try {
+            ((CtrlGCR)controleur).OuvrirVueCR();
+        } catch (Exception ex) {
+            Logger.getLogger(VueGCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonCRActionPerformed
 
     private void jButtonVisiteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVisiteursActionPerformed
-        ((CtrlGCR)controleur).OuvrirVueVisiteur();
+        try {
+            ((CtrlGCR)controleur).OuvrirVueVisiteur();
+        } catch (Exception ex) {
+            Logger.getLogger(VueGCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonVisiteursActionPerformed
 
     private void jButtonPraticiensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPraticiensActionPerformed
-        ((CtrlGCR)controleur).OuvrirVuePraticien();
+        try {
+            ((CtrlGCR)controleur).OuvrirVuePraticien();
+        } catch (Exception ex) {
+            Logger.getLogger(VueGCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonPraticiensActionPerformed
 
     private void jButtonMedicamentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedicamentsActionPerformed
-        ((CtrlGCR)controleur).OuvrirVueMedicament();
+        try {
+            ((CtrlGCR)controleur).OuvrirVueMedicament();
+        } catch (Exception ex) {
+            Logger.getLogger(VueGCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonMedicamentsActionPerformed
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
-        ((CtrlGCR)controleur).Quitter();
+        try {
+            ((CtrlGCR)controleur).Quitter();
+        } catch (Exception ex) {
+            Logger.getLogger(VueGCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
 

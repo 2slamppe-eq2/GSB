@@ -26,7 +26,7 @@ public class GSBVisiteur {
         String ficPropertiesJdbc = "GSBJdbc.properties"; // nom du fichier de properties
         Properties propertiesJdbc;                              // objet de propriétés (paramètres de l'appplication) pour Jdbc
         FileInputStream input;                                  // flux de lecture des properties
-        CtrlConnexion ctrlConnexion;                                  // référence vers le contrôleur principal
+        CtrlPrincipal ctrlPrincipal;                                  // référence vers le contrôleur principal
 
         // si au moins un paramètre a été passé sur la ligne de commandes
         // le premier est le nom du fichier contenant les propriétés de connexion JDBC
@@ -58,10 +58,8 @@ public class GSBVisiteur {
         
         
         
-        ctrlConnexion = new CtrlConnexion();
-        
-        ctrlConnexion.getVue().setEnabled(true);
-        ctrlConnexion.getVue().setVisible(true);
+        ctrlPrincipal = new CtrlPrincipal();
+        ctrlPrincipal.action();
     }
     }
 

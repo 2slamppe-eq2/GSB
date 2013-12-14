@@ -13,7 +13,8 @@ import vue.*;
 public class CtrlPraticien extends CtrlAbstrait{
     private CtrlPraticien ctrlPraticien = null;
     
-    public CtrlPraticien() {
+    public CtrlPraticien(CtrlPrincipal ctrlPrincipal) {
+        super(ctrlPrincipal);
         vue = new VuePraticien(this);
     }
      
@@ -23,4 +24,13 @@ public class CtrlPraticien extends CtrlAbstrait{
     public VuePraticien getVue() {
         return (VuePraticien) vue;
     }
+
+    public CtrlPrincipal getCtrlPrincipal() {
+        return ctrlPrincipal;
+    }
+    
+    public void quitter() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.PRATICIEN_QUITTER);
+    }
 }
+

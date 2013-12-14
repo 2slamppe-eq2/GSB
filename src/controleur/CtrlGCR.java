@@ -12,9 +12,9 @@ import vue.*;
  */
 public class CtrlGCR extends CtrlAbstrait{
     
-    private CtrlGCR ctrlGCR = null;
     
-    public CtrlGCR() {
+    public CtrlGCR(CtrlPrincipal ctrlPrincipal) {
+        super(ctrlPrincipal);
         vue = new VueGCR(this);
     }
      
@@ -24,37 +24,34 @@ public class CtrlGCR extends CtrlAbstrait{
     public VueGCR getVue() {
         return (VueGCR) vue;
     }
-    
-    public void OuvrirVueCR(){
-        CtrlCR ctrlCR= new CtrlCR();        
-        ctrlCR.getVue().setEnabled(true);
-        ctrlCR.getVue().setVisible(true);
-        this.getVue().setVisible(false);
+
+    public CtrlPrincipal getCtrlPrincipal() {
+        return ctrlPrincipal;
+    }
+
+    public void setCtrlPrincipal(CtrlPrincipal ctrlPrincipal) {
+        this.ctrlPrincipal = ctrlPrincipal;
     }
     
-    public void OuvrirVueVisiteur(){
-        CtrlVisiteur ctrlVisiteur  = new CtrlVisiteur();        
-        ctrlVisiteur.getVue().setEnabled(true);
-        ctrlVisiteur.getVue().setVisible(true);
-        this.getVue().setVisible(false);
+    
+    public void OuvrirVueCR() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.CR_AFFICHER);
     }
     
-    public void OuvrirVuePraticien(){
-        CtrlPraticien ctrlPraticien= new CtrlPraticien();        
-        ctrlPraticien.getVue().setEnabled(true);
-        ctrlPraticien.getVue().setVisible(true);
-        this.getVue().setVisible(false);
+    public void OuvrirVueVisiteur() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.VISITEUR_AFFICHER);
     }
     
-    public void OuvrirVueMedicament(){
-        CtrlMedicament ctrlMedicament = new CtrlMedicament();        
-        ctrlMedicament.getVue().setEnabled(true);
-        ctrlMedicament.getVue().setVisible(true);
-        this.getVue().setVisible(false);
+    public void OuvrirVuePraticien() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.PRATICIEN_AFFICHER);
     }
     
-    public void Quitter(){
-        System.exit(0);
+    public void OuvrirVueMedicament() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.MEDICAMENT_AFFICHER);
+    }
+    
+    public void Quitter() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.GCR_QUITTER);
     }
   
     

@@ -12,17 +12,23 @@ import vue.*;
  */
 public class CtrlMedicament extends CtrlAbstrait{
     
-    private CtrlMedicament ctrlMedicament= null;
-    
-    public CtrlMedicament() {
+    public CtrlMedicament(CtrlPrincipal ctrlPrincipal) {
+        super(ctrlPrincipal);
         vue = new VueMedicament(this);
     }
+
+    public CtrlPrincipal getCtrlPrincipal() {
+        return ctrlPrincipal;
+    }
      
-        
-     
+
     @Override
     public VueMedicament getVue() {
         return (VueMedicament) vue;
     }
+    
+         public void quitter() throws Exception{
+         this.getCtrlPrincipal().action(EnumAction.MEDICAMENT_QUITTER);
+     } 
     
 }
