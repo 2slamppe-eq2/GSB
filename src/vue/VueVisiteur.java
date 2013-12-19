@@ -122,6 +122,11 @@ public class VueVisiteur extends VueAbstraite {
         });
 
         Suivant.setText("Suivant");
+        Suivant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuivantActionPerformed(evt);
+            }
+        });
 
         jLabelMatricule.setText("Matricule :");
 
@@ -255,6 +260,14 @@ public class VueVisiteur extends VueAbstraite {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCPActionPerformed
 
+    private void SuivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuivantActionPerformed
+        try {
+            ((CtrlVisiteur)controleur).suivant();
+        } catch (Exception ex) {
+            Logger.getLogger(VueVisiteur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SuivantActionPerformed
+
     public JComboBox getjComboBoxChercher() {
         return jComboBoxChercher;
     }
@@ -289,6 +302,10 @@ public class VueVisiteur extends VueAbstraite {
 
     public void setjButtonPrecedent(JButton jButtonPrecedent) {
         this.jButtonPrecedent = jButtonPrecedent;
+    }
+
+    public JTextField getjTextFieldMatricule() {
+        return jTextFieldMatricule;
     }
 
     public JComboBox getjComboBoxLabo() {

@@ -23,7 +23,9 @@ public class CtrlVisiteur extends CtrlAbstrait{
     private CtrlVisiteur ctrlVisiteur = null;
     private DaoLabo daoLabo = null;
     private DaoSecteur daoSecteur = null;
-    private DaoVisiteur daoVisiteur = null;
+    private static DaoVisiteur daoVisiteur = null;
+    private static ArrayList<Visiteur> LesVisiteurs = null;
+    
     
     public CtrlVisiteur(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
@@ -47,14 +49,10 @@ public class CtrlVisiteur extends CtrlAbstrait{
         this.getCtrlPrincipal().action(EnumAction.VISITEUR_QUITTER);
     }
     
-    public void chargerListeVisiteurs() {
+    public void chargerListeVisiteurs() throws Exception {
         
-        ArrayList<Visiteur> lesVisiteurs = new ArrayList<>();
-        try {
-            lesVisiteurs = daoVisiteur.getAll();
-        } catch (Exception ex) {
-            Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList<Visiteur> lesVisiteurs = getVisiteurs();
+        
         getVue().getModelJComboBoxChercher().removeAllElements();
         for(Visiteur unVisiteur: lesVisiteurs){
             getVue().getModelJComboBoxChercher().addElement(unVisiteur);
@@ -63,12 +61,14 @@ public class CtrlVisiteur extends CtrlAbstrait{
     
     public void remplir(Visiteur unVisiteur) {
         if(unVisiteur == null){
-            try {            
-                unVisiteur = daoVisiteur.getOne("a17");
+            try {   
+                ArrayList<Visiteur> LesVisiteurs = getVisiteurs();
+                unVisiteur = LesVisiteurs.get(0);
             } catch (Exception ex) {
                 Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        getVue().getjTextFieldMatricule().setText(unVisiteur.getMatricule());
         getVue().getjTextFieldNom().setText(unVisiteur.getNom());
         getVue().getjTextFieldPrenom().setText(unVisiteur.getPrenom());
         getVue().getjTextFieldAdresse().setText(unVisiteur.getAdresse());
@@ -78,6 +78,7 @@ public class CtrlVisiteur extends CtrlAbstrait{
         getVue().getModelJComboBoxSecteur().removeAllElements();
         getVue().getModelJComboBoxLabo().addElement(unVisiteur.getLabo());
         getVue().getModelJComboBoxSecteur().addElement(unVisiteur.getSecteur());
+        
     } 
     
     public void choixVisiteur(){
@@ -86,12 +87,35 @@ public class CtrlVisiteur extends CtrlAbstrait{
         
     }
     
-    public void suivant(){
+    public void suivant() throws Exception{        
+        
+        Visiteur VisiteurActuelle = new Visiteur();
+        try {
+            VisiteurActuelle = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
+        } catch (Exception ex) {
+            Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<Visiteur> LesVisiteurs = getVisiteurs();
+        int index = LesVisiteurs.indexOf(VisiteurActuelle);
+        if(index < LesVisiteurs.size()){
+        remplir(LesVisiteurs.get(index+1));
+        }
+        
+        
+        
         //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
     }
     
     public void nouveau(){
         //passe par le controleur principal pour charger une nouvelle fenêtre qui fonctione avec DaoVisiteur pour l'insertion de données et avec les autre Dao pour choisir Labo et secteur
+    }
+    
+    public static ArrayList<Visiteur> getVisiteurs() throws Exception{
+       if (LesVisiteurs==null){
+           LesVisiteurs = daoVisiteur.getAll();
+           
+       }
+       return LesVisiteurs;
     }
     
    
