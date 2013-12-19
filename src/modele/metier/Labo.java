@@ -49,7 +49,7 @@ public class Labo {
 
     @Override
     public String toString() {
-        return "Labo{" + "code=" + code + ", nom=" + nom + ", ChefVente=" + ChefVente + '}';
+        return this.getCode()+"   "+this.getNom()+"   "+this.getChefVente();
     }
     
     

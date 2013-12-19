@@ -39,7 +39,7 @@ public class Secteur {
 
     @Override
     public String toString() {
-        return "Secteur{" + "code=" + code + ", libelle=" + libelle + '}';
+        return this.getCode()+"   "+this.getLibelle();
     }
     
     

@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
 package modele.dao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import modele.jdbc.*;
 import modele.metier.*;
@@ -19,12 +23,42 @@ public class DaoLabo implements DaoInterface<Labo, String>{
 
     @Override
     public Labo getOne(String idLabo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Labo result = null;
+        ResultSet rs = null;
+        
+        String requete = "SELECT * FROM LABO WHERE LAB_CODE=?";
+        try{
+            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
+            ps.setString(1, idLabo);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                result = chargerUnEnregistrement(rs);
+            }
+        }catch (SQLException ex){
+             throw new modele.dao.DaoException("DaoLabo::getOne : erreur requete SELECT : " + ex.getMessage());
+        }
+        return result;
     }
 
     @Override
-    public Collection<Labo> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Labo> getAll() throws Exception {
+        ArrayList<Labo> result = new ArrayList<Labo>();
+        ResultSet rs;
+        String requete = "SELECT * FROM LABO";
+        try{
+            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Labo labo = chargerUnEnregistrement(rs);
+                result.add(labo);
+            }
+
+            
+        }catch (SQLException ex){
+             throw new modele.dao.DaoException("DaoLabo::getAll : erreur requete SELECT : " + ex.getMessage());
+        }
+        return result;
     }
 
     @Override
@@ -35,6 +69,19 @@ public class DaoLabo implements DaoInterface<Labo, String>{
     @Override
     public int delete(String idLabo) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private Labo chargerUnEnregistrement(ResultSet rs) throws DaoException{
+        try{
+            Labo labo = new Labo();
+            labo.setCode(rs.getString("LAB_CODE"));
+            labo.setNom(rs.getString("LAB_NOM"));
+            labo.setChefVente(rs.getString("LAB_CHEFVENTE"));
+            return labo; 
+        }catch (SQLException ex){            
+            throw new DaoException("DaoLabo - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+        }
+        
     }
     
 }
