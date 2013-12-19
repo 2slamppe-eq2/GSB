@@ -29,6 +29,7 @@ public class VueVisiteur extends VueAbstraite {
      */
     public VueVisiteur(CtrlAbstrait ctrl) {
         super(ctrl);
+       
         initComponents();
         modelJComboBoxChercher = new DefaultComboBoxModel();
         modelJComboBoxLabo = new DefaultComboBoxModel();
@@ -78,7 +79,19 @@ public class VueVisiteur extends VueAbstraite {
         jLabelVisiteurs.setText("VISITEURS");
 
         jComboBoxChercher.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxChercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxChercherActionPerformed(evt);
+            }
+        });
 
+        jTextFieldNom.setEditable(false);
+
+        jTextFieldPrenom.setEditable(false);
+
+        jTextFieldAdresse.setEditable(false);
+
+        jTextFieldCP.setEditable(false);
         jTextFieldCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCPActionPerformed(evt);
@@ -102,6 +115,8 @@ public class VueVisiteur extends VueAbstraite {
         jComboBoxLabo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBoxSecteur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jTextFieldVille.setEditable(false);
 
         jButtonPrecedent.setText("Précédent");
         jButtonPrecedent.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +147,8 @@ public class VueVisiteur extends VueAbstraite {
                 SuivantActionPerformed(evt);
             }
         });
+
+        jTextFieldMatricule.setEditable(false);
 
         jLabelMatricule.setText("Matricule :");
 
@@ -280,6 +297,10 @@ public class VueVisiteur extends VueAbstraite {
             Logger.getLogger(VueVisiteur.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonPrecedentActionPerformed
+
+    private void jComboBoxChercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxChercherActionPerformed
+        ((CtrlVisiteur)controleur).choixVisiteur();
+    }//GEN-LAST:event_jComboBoxChercherActionPerformed
 
     public JComboBox getjComboBoxChercher() {
         return jComboBoxChercher;

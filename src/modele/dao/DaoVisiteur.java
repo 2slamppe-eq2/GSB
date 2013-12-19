@@ -30,6 +30,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
     public Visiteur getOne(String idVisiteur) throws Exception {
         Visiteur result = null;
         ResultSet rs = null;
+        Jdbc.getInstance().connecter();
         String requete = "SELECT * FROM VISITEUR WHERE VIS_MATRICULE=?";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
@@ -43,7 +44,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
         }catch (SQLException ex){
           throw new modele.dao.DaoException("DaoVisiteur::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
-        
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 

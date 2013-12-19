@@ -6,6 +6,7 @@ package vue;
 
 import controleur.CtrlAbstrait;
 import controleur.CtrlConnexion;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -53,6 +54,7 @@ public class VueConnexion extends VueAbstraite {
         jLabelPwd.setText("Mot de passe:");
 
         jButtonConnexion.setText("Connexion");
+        jButtonConnexion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConnexionActionPerformed(evt);
@@ -63,6 +65,12 @@ public class VueConnexion extends VueAbstraite {
         jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonQuitterActionPerformed(evt);
+            }
+        });
+
+        jPasswordFieldPwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldPwdActionPerformed(evt);
             }
         });
 
@@ -136,9 +144,20 @@ public class VueConnexion extends VueAbstraite {
         }
     }//GEN-LAST:event_jButtonConnexionActionPerformed
 
+    private void jPasswordFieldPwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldPwdActionPerformed
+        try {
+            ((CtrlConnexion)controleur).seConnecter();
+        } catch (Exception ex) {
+            Logger.getLogger(VueConnexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPasswordFieldPwdActionPerformed
+
     public JTextField getjTextFieldIdentifiant() {
         return jTextFieldIdentifiant;
     }
+
+    
+    
 
     public JPasswordField getjPasswordFieldPwd() {
         return jPasswordFieldPwd;

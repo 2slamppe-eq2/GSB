@@ -53,12 +53,13 @@ public class CtrlVisiteur extends CtrlAbstrait{
         ArrayList<Visiteur> lesVisiteurs = getVisiteurs();
         
         getVue().getModelJComboBoxChercher().removeAllElements();
+        getVue().getModelJComboBoxChercher().addElement("- - - - - - -");
         for(Visiteur unVisiteur: lesVisiteurs){
             getVue().getModelJComboBoxChercher().addElement(unVisiteur);
         }
     } 
     
-    public void remplir(Visiteur unVisiteur) {
+    public void remplir(Visiteur unVisiteur, int item) {
         if(unVisiteur == null){
             try {   
                 ArrayList<Visiteur> LesVisiteur = getVisiteurs();
@@ -77,12 +78,18 @@ public class CtrlVisiteur extends CtrlAbstrait{
         getVue().getModelJComboBoxSecteur().removeAllElements();
         getVue().getModelJComboBoxLabo().addElement(unVisiteur.getLabo());
         getVue().getModelJComboBoxSecteur().addElement(unVisiteur.getSecteur());
+        getVue().getjComboBoxChercher().setSelectedIndex(item);
         
     } 
     
     public void choixVisiteur(){
-        Visiteur unVisiteur = (Visiteur)getVue().getjComboBoxChercher().getSelectedItem();
-        remplir(unVisiteur);      
+        Visiteur unVisiteur = new Visiteur();
+        if(!getVue().getjComboBoxChercher().getSelectedItem().toString().equals("- - - - - - -")){
+            
+            unVisiteur = (Visiteur)getVue().getjComboBoxChercher().getSelectedItem();        
+            remplir(unVisiteur,getVue().getjComboBoxChercher().getSelectedIndex() );
+        }
+              
         
     }
     
@@ -101,8 +108,8 @@ public class CtrlVisiteur extends CtrlAbstrait{
         }
         
         int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
-        if(index < LesVisiteur.size() && index>=0){
-        remplir(LesVisiteur.get(index+1));
+        if(index < LesVisiteur.size()-1 && index>=0){
+        remplir(LesVisiteur.get(index+1), (index+2));
         }
         
         
@@ -128,7 +135,7 @@ public class CtrlVisiteur extends CtrlAbstrait{
         
         int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
         if(index > 0){
-        remplir(LesVisiteur.get(index-1));
+        remplir(LesVisiteur.get(index-1), index);
         }
         
         

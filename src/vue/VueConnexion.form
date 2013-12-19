@@ -106,10 +106,16 @@
     <Component class="javax.swing.JButton" name="jButtonConnexion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Connexion"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Curseur par d&#xe9;faut"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConnexionActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VueConnexion_jButtonConnexion"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonQuitter">
       <Properties>
@@ -120,6 +126,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldPwd">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordFieldPwdActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelErreur">
       <Properties>

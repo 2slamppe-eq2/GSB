@@ -111,7 +111,7 @@ public class CtrlPrincipal {
             ctrlVisiteur = new CtrlVisiteur(this);
         }
         ctrlVisiteur.chargerListeVisiteurs();
-        ctrlVisiteur.remplir(null);
+        ctrlVisiteur.remplir(null,0);
         ctrlVisiteur.getVue().setEnabled(true);
         ctrlVisiteur.getVue().setVisible(true);  
         ctrlGCR.getVue().setVisible(false);
