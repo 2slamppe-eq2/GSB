@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import modele.dao.DaoLabo;
 import modele.dao.DaoSecteur;
 import modele.dao.DaoVisiteur;
+import modele.metier.Labo;
 import modele.metier.Visiteur;
 import vue.*;
 
@@ -71,12 +72,33 @@ public class CtrlVisiteur extends CtrlAbstrait{
         getVue().getjTextFieldNom().setText(unVisiteur.getNom());
         getVue().getjTextFieldPrenom().setText(unVisiteur.getPrenom());
         getVue().getjTextFieldAdresse().setText(unVisiteur.getAdresse());
-        getVue().getjTextFieldCP().setText(unVisiteur.getVille());
+        getVue().getjTextFieldVille().setText(unVisiteur.getVille());
         getVue().getjTextFieldCP().setText(unVisiteur.getCP());
-    }   
+        getVue().getModelJComboBoxLabo().removeAllElements();
+        getVue().getModelJComboBoxSecteur().removeAllElements();
+        getVue().getModelJComboBoxLabo().addElement(unVisiteur.getLabo());
+        getVue().getModelJComboBoxSecteur().addElement(unVisiteur.getSecteur());
+    } 
+    
+    public void choixVisiteur(){
+        Visiteur unVisiteur = (Visiteur)getVue().getjComboBoxChercher().getSelectedItem();
+        remplir(unVisiteur);      
+        
+    }
+    
+    public void suivant(){
+        //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
+    }
+    
+    public void nouveau(){
+        //passe par le controleur principal pour charger une nouvelle fenêtre qui fonctione avec DaoVisiteur pour l'insertion de données et avec les autre Dao pour choisir Labo et secteur
+    }
+    
+   
+}
 
   
     
    
     
-}
+

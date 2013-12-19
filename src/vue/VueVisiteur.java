@@ -107,6 +107,11 @@ public class VueVisiteur extends VueAbstraite {
         });
 
         jButtonOK.setText("OK");
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Suivant");
 
@@ -225,6 +230,10 @@ public class VueVisiteur extends VueAbstraite {
             Logger.getLogger(VueVisiteur.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonFermerActionPerformed
+
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        ((CtrlVisiteur)controleur).choixVisiteur();
+    }//GEN-LAST:event_jButtonOKActionPerformed
 
     public JComboBox getjComboBoxChercher() {
         return jComboBoxChercher;
