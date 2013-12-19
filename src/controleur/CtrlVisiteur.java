@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import modele.dao.DaoLabo;
 import modele.dao.DaoSecteur;
 import modele.dao.DaoVisiteur;
-import modele.metier.Labo;
 import modele.metier.Visiteur;
 import vue.*;
 
@@ -62,7 +61,7 @@ public class CtrlVisiteur extends CtrlAbstrait{
     public void remplir(Visiteur unVisiteur) {
         if(unVisiteur == null){
             try {   
-                ArrayList<Visiteur> LesVisiteurs = getVisiteurs();
+                ArrayList<Visiteur> LesVisiteur = getVisiteurs();
                 unVisiteur = LesVisiteurs.get(0);
             } catch (Exception ex) {
                 Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,17 +88,49 @@ public class CtrlVisiteur extends CtrlAbstrait{
     
     public void suivant() throws Exception{        
         
-        Visiteur VisiteurActuelle = new Visiteur();
+        Visiteur VisiteurActuel = new Visiteur();
         try {
-            VisiteurActuelle = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
+            VisiteurActuel = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
         } catch (Exception ex) {
             Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ArrayList<Visiteur> LesVisiteurs = getVisiteurs();
-        int index = LesVisiteurs.indexOf(VisiteurActuelle);
-        if(index < LesVisiteurs.size()){
-        remplir(LesVisiteurs.get(index+1));
+        ArrayList<Visiteur> LesVisiteur = getVisiteurs();
+        ArrayList<String> MatriculeVisiteur = new ArrayList<String>();
+        for(Visiteur unVisiteur: LesVisiteur){
+             MatriculeVisiteur.add(unVisiteur.getMatricule());
         }
+        
+        int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
+        if(index < LesVisiteur.size() && index>=0){
+        remplir(LesVisiteur.get(index+1));
+        }
+        
+        
+        
+        
+        //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
+    }
+    
+    
+        public void precedent() throws Exception{        
+        
+        Visiteur VisiteurActuel = new Visiteur();
+        try {
+            VisiteurActuel = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
+        } catch (Exception ex) {
+            Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<Visiteur> LesVisiteur = getVisiteurs();
+        ArrayList<String> MatriculeVisiteur = new ArrayList<String>();
+        for(Visiteur unVisiteur: LesVisiteur){
+             MatriculeVisiteur.add(unVisiteur.getMatricule());
+        }
+        
+        int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
+        if(index > 0){
+        remplir(LesVisiteur.get(index-1));
+        }
+        
         
         
         
