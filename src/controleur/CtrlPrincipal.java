@@ -84,9 +84,12 @@ public class CtrlPrincipal {
         if(ctrlCR == null){
             ctrlCR = new CtrlCR(this);
         }
+        ctrlCR.getVue().getjButtonEnregistrer().setVisible(false);
+        ctrlCR.getVue().getjButtonRetour().setVisible(false);
         ctrlCR.getVue().setEnabled(true);
         ctrlCR.getVue().setVisible(true);
         ctrlGCR.getVue().setVisible(false);
+        
     }
     
     private void afficherMedicament(){
