@@ -74,7 +74,7 @@ public class CtrlNouveauVisiteur extends CtrlAbstrait{
         leVisiteur.setAdresse(getVue().getjTextFieldAdresse().getText());
         leVisiteur.setCP(getVue().getjTextFieldCP().getText());
         leVisiteur.setVille(getVue().getjTextFieldVille().getText());
-        leVisiteur.setDateEmbauche((Date) getVue().getjDateChooserEmbauche().getDate());
+//        leVisiteur.setDateEmbauche((Date) getVue().getjDateChooserEmbauche().getDate());
         leVisiteur.setLabo((Labo)getVue().getjComboBoxLabo().getSelectedItem());
         leVisiteur.setSecteur((Secteur)getVue().getjComboBoxSecteur().getSelectedItem());
         
