@@ -24,7 +24,7 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
 
     @Override
     public Secteur getOne(String idSecteur) throws Exception {
-                Secteur result = null;
+        Secteur result = null;
         ResultSet rs = null;
         // préparer la requête
         String requete = "SELECT * FROM SECTEUR WHERE SEC_CODE=?";

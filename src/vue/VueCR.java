@@ -8,6 +8,11 @@ import controleur.CtrlAbstrait;
 import controleur.CtrlCR;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -49,7 +54,7 @@ public class VueCR extends VueAbstraite{
         jButtonPrecedent = new javax.swing.JButton();
         jButtonSuivant = new javax.swing.JButton();
         jButtonNouveau = new javax.swing.JButton();
-        jButtonFermerNouveau = new javax.swing.JButton();
+        jButtonRetour = new javax.swing.JButton();
         jComboBoxPraticien = new javax.swing.JComboBox();
         jButtonDetails = new javax.swing.JButton();
         jButtonEnregistrer = new javax.swing.JButton();
@@ -91,10 +96,10 @@ public class VueCR extends VueAbstraite{
 
         jButtonNouveau.setText("Nouveau");
 
-        jButtonFermerNouveau.setText("Fermer");
-        jButtonFermerNouveau.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRetour.setText("Retour");
+        jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFermerNouveauActionPerformed(evt);
+                jButtonRetourActionPerformed(evt);
             }
         });
 
@@ -162,7 +167,7 @@ public class VueCR extends VueAbstraite{
                                 .addGap(4, 4, 4)
                                 .addComponent(jButtonEnregistrer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonFermerNouveau))
+                                .addComponent(jButtonRetour))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(161, 161, 161)
                                 .addComponent(jButtonFermer)))
@@ -212,7 +217,7 @@ public class VueCR extends VueAbstraite{
                             .addComponent(jButtonPrecedent)
                             .addComponent(jButtonSuivant)
                             .addComponent(jButtonNouveau)
-                            .addComponent(jButtonFermerNouveau)
+                            .addComponent(jButtonRetour)
                             .addComponent(jButtonEnregistrer))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jButtonFermer)))
@@ -222,9 +227,9 @@ public class VueCR extends VueAbstraite{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFermerNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerNouveauActionPerformed
+    private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
        
-    }//GEN-LAST:event_jButtonFermerNouveauActionPerformed
+    }//GEN-LAST:event_jButtonRetourActionPerformed
 
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
          try {
@@ -234,15 +239,119 @@ public class VueCR extends VueAbstraite{
         }
     }//GEN-LAST:event_jButtonFermerActionPerformed
 
+    public JButton getjButtonDetails() {
+        return jButtonDetails;
+    }
+
+    public void setjButtonDetails(JButton jButtonDetails) {
+        this.jButtonDetails = jButtonDetails;
+    }
+
+    public JButton getjButtonEnregistrer() {
+        return jButtonEnregistrer;
+    }
+
+    public void setjButtonEnregistrer(JButton jButtonEnregistrer) {
+        this.jButtonEnregistrer = jButtonEnregistrer;
+    }
+
+    public JButton getjButtonFermer() {
+        return jButtonFermer;
+    }
+
+    public void setjButtonFermer(JButton jButtonFermer) {
+        this.jButtonFermer = jButtonFermer;
+    }
+
+    public JButton getjButtonRetour() {
+        return jButtonRetour;
+    }
+
+    public void setjButtonRetour(JButton jButtonFermerNouveau) {
+        this.jButtonRetour = jButtonFermerNouveau;
+    }
+
+    public JButton getjButtonNouveau() {
+        return jButtonNouveau;
+    }
+
+    public void setjButtonNouveau(JButton jButtonNouveau) {
+        this.jButtonNouveau = jButtonNouveau;
+    }
+
+    public JButton getjButtonPrecedent() {
+        return jButtonPrecedent;
+    }
+
+    public void setjButtonPrecedent(JButton jButtonPrecedent) {
+        this.jButtonPrecedent = jButtonPrecedent;
+    }
+
+    public JButton getjButtonSuivant() {
+        return jButtonSuivant;
+    }
+
+    public void setjButtonSuivant(JButton jButtonSuivant) {
+        this.jButtonSuivant = jButtonSuivant;
+    }
+
+    public JComboBox getjComboBoxPraticien() {
+        return jComboBoxPraticien;
+    }
+
+    public void setjComboBoxPraticien(JComboBox jComboBoxPraticien) {
+        this.jComboBoxPraticien = jComboBoxPraticien;
+    }
+
+    public JTable getjTableEchantillon() {
+        return jTableEchantillon;
+    }
+
+    public void setjTableEchantillon(JTable jTableEchantillon) {
+        this.jTableEchantillon = jTableEchantillon;
+    }
+
+    public JTextArea getjTextAreaBilan() {
+        return jTextAreaBilan;
+    }
+
+    public void setjTextAreaBilan(JTextArea jTextAreaBilan) {
+        this.jTextAreaBilan = jTextAreaBilan;
+    }
+
+    public JTextField getjTextFieldDate() {
+        return jTextFieldDate;
+    }
+
+    public void setjTextFieldDate(JTextField jTextFieldDate) {
+        this.jTextFieldDate = jTextFieldDate;
+    }
+
+    public JTextField getjTextFieldMotif() {
+        return jTextFieldMotif;
+    }
+
+    public void setjTextFieldMotif(JTextField jTextFieldMotif) {
+        this.jTextFieldMotif = jTextFieldMotif;
+    }
+
+    public JTextField getjTextFieldNum() {
+        return jTextFieldNum;
+    }
+
+    public void setjTextFieldNum(JTextField jTextFieldNum) {
+        this.jTextFieldNum = jTextFieldNum;
+    }
+
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDetails;
     private javax.swing.JButton jButtonEnregistrer;
     private javax.swing.JButton jButtonFermer;
-    private javax.swing.JButton jButtonFermerNouveau;
     private javax.swing.JButton jButtonNouveau;
     private javax.swing.JButton jButtonPrecedent;
+    private javax.swing.JButton jButtonRetour;
     private javax.swing.JButton jButtonSuivant;
     private javax.swing.JComboBox jComboBoxPraticien;
     private javax.swing.JLabel jLabelBilan;

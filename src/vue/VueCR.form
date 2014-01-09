@@ -83,7 +83,7 @@
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jButtonEnregistrer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButtonFermerNouveau" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonRetour" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="161" pref="161" max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
                           <Component id="jButtonPrecedent" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonSuivant" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonNouveau" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonFermerNouveau" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonRetour" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonEnregistrer" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -268,12 +268,12 @@
         <Property name="text" type="java.lang.String" value="Nouveau"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonFermerNouveau">
+    <Component class="javax.swing.JButton" name="jButtonRetour">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fermer"/>
+        <Property name="text" type="java.lang.String" value="Retour"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFermerNouveauActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRetourActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxPraticien">
