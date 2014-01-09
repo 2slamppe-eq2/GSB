@@ -22,8 +22,29 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
     private DaoSecteur daoSecteur = new DaoSecteur();
     private DaoLabo daoLabo = new DaoLabo();
     @Override
-    public int create(Visiteur objetMetier) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int create(Visiteur unVisiteur) throws Exception {
+        Jdbc.getInstance().connecter();
+        int rs=0;
+        String requete = "INSERT INTO VISITEUR VALUES(?,?,?,?,?,?,?,?,?);";
+        try{
+            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
+            ps.setString(1,unVisiteur.getMatricule());
+            ps.setString(2,unVisiteur.getNom());
+            ps.setString(3,unVisiteur.getPrenom());
+            ps.setString(4,unVisiteur.getAdresse());
+            ps.setString(5,unVisiteur.getCP());
+            ps.setString(6,unVisiteur.getVille());
+            ps.setDate(7,unVisiteur.getDateEmbauche());
+            ps.setString(8,unVisiteur.getSecteur().getCode());
+            ps.setString(9,unVisiteur.getLabo().getCode());
+            rs = ps.executeUpdate(requete);
+            return rs;
+            
+        }catch (SQLException e){
+          throw new modele.dao.DaoException("DaoVisiteur::create : erreur requete SELECT : " + e.getMessage());   
+          
+        }
+        
     }
 
     @Override
@@ -91,7 +112,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
             visiteur.setLabo(daoLabo.getOne(rs.getString("LAB_CODE")));
             return visiteur;
         } catch (SQLException ex) {
-            throw new DaoException("DaoEquipier - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+            throw new DaoException("DaoVisiteur - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
         }
     }
     

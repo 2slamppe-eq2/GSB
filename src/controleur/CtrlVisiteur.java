@@ -144,8 +144,12 @@ public class CtrlVisiteur extends CtrlAbstrait{
         //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
     }
     
-    public void nouveau(){
-        //passe par le controleur principal pour charger une nouvelle fenêtre qui fonctione avec DaoVisiteur pour l'insertion de données et avec les autre Dao pour choisir Labo et secteur
+    public void nouveauVisiteur() throws Exception{        
+        this.getCtrlPrincipal().action(EnumAction.VISITEUR_AJOUTER);        
+    }
+    
+    public void OuvrirVuePraticien() throws Exception{
+        this.getCtrlPrincipal().action(EnumAction.PRATICIEN_AFFICHER);
     }
     
     public static ArrayList<Visiteur> getVisiteurs() throws Exception{

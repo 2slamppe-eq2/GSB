@@ -16,6 +16,7 @@ public class CtrlPrincipal {
     private CtrlMedicament ctrlMedicament = null;
     private CtrlPraticien ctrlPraticien = null;
     private CtrlVisiteur ctrlVisiteur = null;
+    private CtrlNouveauVisiteur ctrlNouveauVisiteur = null;
     
     public void action(){
         if(ctrlConnexion == null){
@@ -53,6 +54,9 @@ public class CtrlPrincipal {
                 break;
             case VISITEUR_AFFICHER:
                 afficherVisiteur();
+                break;
+            case VISITEUR_AJOUTER:
+                afficherVueNouveau();
                 break;
             case VISITEUR_QUITTER:
                 quitterVisiteur();
@@ -109,12 +113,22 @@ public class CtrlPrincipal {
     
         if(ctrlVisiteur == null){
             ctrlVisiteur = new CtrlVisiteur(this);
+            ctrlVisiteur.chargerListeVisiteurs();
+            ctrlVisiteur.remplir(null,0);  
         }
-        ctrlVisiteur.chargerListeVisiteurs();
-        ctrlVisiteur.remplir(null,0);
         ctrlVisiteur.getVue().setEnabled(true);
         ctrlVisiteur.getVue().setVisible(true);  
         ctrlGCR.getVue().setVisible(false);
+        ctrlGCR.getVue().setEnabled(false);
+    }
+    
+    private void afficherVueNouveau() throws Exception{//erreur vue s'affiche pas
+        if(ctrlNouveauVisiteur == null){
+            ctrlNouveauVisiteur = new CtrlNouveauVisiteur(this);
+        }
+        ctrlNouveauVisiteur.getVue().setEnabled(true);
+        ctrlNouveauVisiteur.getVue().setVisible(true);
+        ctrlVisiteur.getVue().setVisible(false);
     }
     
     private void quitterCR(){
@@ -125,6 +139,7 @@ public class CtrlPrincipal {
     }
     
     private void quitterGCR(){
+        System.exit(0);
        
         
     }

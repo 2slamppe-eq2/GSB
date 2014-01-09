@@ -72,14 +72,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabelEchantillon" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonFermer" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Component id="jButtonEnregistrer" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButtonFermerNouveau" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="161" pref="161" max="-2" attributes="0"/>
+                              <Component id="jButtonFermer" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -121,7 +131,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabelBilan" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -138,11 +148,14 @@
                           <Component id="jButtonPrecedent" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonSuivant" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonNouveau" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonFermer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonFermerNouveau" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonEnregistrer" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="47" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <Component id="jButtonFermer" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -255,12 +268,12 @@
         <Property name="text" type="java.lang.String" value="Nouveau"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonFermer">
+    <Component class="javax.swing.JButton" name="jButtonFermerNouveau">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fermer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFermerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFermerNouveauActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxPraticien">
@@ -279,6 +292,19 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="D&#xe9;tails"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonEnregistrer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enregistrer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonFermer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fermer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFermerActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

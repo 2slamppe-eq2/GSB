@@ -49,9 +49,11 @@ public class VueCR extends VueAbstraite{
         jButtonPrecedent = new javax.swing.JButton();
         jButtonSuivant = new javax.swing.JButton();
         jButtonNouveau = new javax.swing.JButton();
-        jButtonFermer = new javax.swing.JButton();
+        jButtonFermerNouveau = new javax.swing.JButton();
         jComboBoxPraticien = new javax.swing.JComboBox();
         jButtonDetails = new javax.swing.JButton();
+        jButtonEnregistrer = new javax.swing.JButton();
+        jButtonFermer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,16 +91,25 @@ public class VueCR extends VueAbstraite{
 
         jButtonNouveau.setText("Nouveau");
 
-        jButtonFermer.setText("Fermer");
-        jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFermerNouveau.setText("Fermer");
+        jButtonFermerNouveau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFermerActionPerformed(evt);
+                jButtonFermerNouveauActionPerformed(evt);
             }
         });
 
         jComboBoxPraticien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonDetails.setText("Détails");
+
+        jButtonEnregistrer.setText("Enregistrer");
+
+        jButtonFermer.setText("Fermer");
+        jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFermerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,11 +154,18 @@ public class VueCR extends VueAbstraite{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelEchantillon)
-                                .addContainerGap(68, Short.MAX_VALUE))
+                                .addContainerGap())
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonFermer)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jButtonEnregistrer)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonFermerNouveau))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(jButtonFermer)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,7 +198,7 @@ public class VueCR extends VueAbstraite{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelBilan)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,15 +212,22 @@ public class VueCR extends VueAbstraite{
                             .addComponent(jButtonPrecedent)
                             .addComponent(jButtonSuivant)
                             .addComponent(jButtonNouveau)
-                            .addComponent(jButtonFermer))
-                        .addGap(0, 47, Short.MAX_VALUE))))
+                            .addComponent(jButtonFermerNouveau)
+                            .addComponent(jButtonEnregistrer))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jButtonFermer)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonFermerNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerNouveauActionPerformed
+       
+    }//GEN-LAST:event_jButtonFermerNouveauActionPerformed
+
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
-        try {
+         try {
             ((CtrlCR)controleur).quitter();
         } catch (Exception ex) {
             Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,7 +238,9 @@ public class VueCR extends VueAbstraite{
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDetails;
+    private javax.swing.JButton jButtonEnregistrer;
     private javax.swing.JButton jButtonFermer;
+    private javax.swing.JButton jButtonFermerNouveau;
     private javax.swing.JButton jButtonNouveau;
     private javax.swing.JButton jButtonPrecedent;
     private javax.swing.JButton jButtonSuivant;
