@@ -4,6 +4,7 @@
  */
 package controleur;
 
+import javax.swing.JTextArea;
 import vue.*;
 
 /**
@@ -30,8 +31,23 @@ public class CtrlCR extends CtrlAbstrait{
     }
      
     
-        public void quitter() throws Exception{
+    public void quitter() throws Exception{
         this.getCtrlPrincipal().action(EnumAction.CR_QUITTER);
+    }
+        
+    public void vider() {
+        getVue().getjTextAreaBilan().setText("");
+        getVue().getjTextFieldDate().setText("");
+        getVue().getjTextFieldMotif().setText("");
+        getVue().getjTextFieldNum().setText("");
+    }
+    
+    public void nouveau(){
+        this.vider();
+        
+        getVue().getjButtonEnregistrer().setVisible(true);
+        getVue().getjButtonRetour().setVisible(true);
+        
     }
 
     
