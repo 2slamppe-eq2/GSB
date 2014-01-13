@@ -97,5 +97,9 @@ public class Praticien {
         this.type = type;
     }
     
+    public String toString() {
+        return this.getNom()+ "   "+this.getPrenom();
+    }
+    
     
 }

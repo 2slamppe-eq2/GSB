@@ -4,6 +4,8 @@
  */
 package controleur;
 
+import modele.metier.RapportVisite;
+
 /**
  *
  * @author btssio
@@ -56,7 +58,7 @@ public class CtrlPrincipal {
                 afficherVisiteur();
                 break;
             case VISITEUR_AJOUTER:
-                afficherVueNouveau();
+                afficherVueNouveauVisiteur();
                 break;
             case VISITEUR_QUITTER:
                 quitterVisiteur();
@@ -79,10 +81,13 @@ public class CtrlPrincipal {
         
     }
     
-    private void afficherCR (){
+    private void afficherCR () throws Exception{
         
         if(ctrlCR == null){
             ctrlCR = new CtrlCR(this);
+            ctrlCR.remplirPraticien();
+            ctrlCR.remplirRapportVisite(null);
+            
         }
         ctrlCR.getVue().getjButtonEnregistrer().setVisible(false);
         ctrlCR.getVue().getjButtonRetour().setVisible(false);
@@ -92,10 +97,11 @@ public class CtrlPrincipal {
         
     }
     
-    private void afficherMedicament(){
+    private void afficherMedicament() throws Exception{
     
         if(ctrlMedicament == null){
             ctrlMedicament = new CtrlMedicament(this);
+            
         }
         ctrlMedicament.getVue().setEnabled(true);
         ctrlMedicament.getVue().setVisible(true);
@@ -125,7 +131,7 @@ public class CtrlPrincipal {
         ctrlGCR.getVue().setEnabled(false);
     }
     
-    private void afficherVueNouveau() throws Exception{//erreur vue s'affiche pas
+    private void afficherVueNouveauVisiteur() throws Exception{//erreur vue s'affiche pas
         if(ctrlNouveauVisiteur == null){
             ctrlNouveauVisiteur = new CtrlNouveauVisiteur(this);
         }
@@ -174,6 +180,8 @@ public class CtrlPrincipal {
     private void quitterConnexion(){
         System.exit(0);
     }
+    
+    
     
     
     

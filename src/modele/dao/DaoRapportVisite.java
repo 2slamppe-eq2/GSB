@@ -23,14 +23,32 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
     DaoVisiteur daoVisiteur = new DaoVisiteur();
     DaoPraticien daoPraticien = new DaoPraticien();
     @Override
-    public int create(RapportVisite objetMetier) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int create(RapportVisite rapportVisite) throws Exception {
+        int effectue = 0;
+        Jdbc.getInstance().connecter();
+        String requete = "INSERT INTO RAPPORT_VISITE VALUES (?,?,?,?,?,?);";
+        try {
+        PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
+        ps.setString(1,rapportVisite.getVisiteur().getMatricule());
+        ps.setInt(2,rapportVisite.getNumero());
+        ps.setInt(3,rapportVisite.getPraticien().getNumero());
+        ps.setDate(4, rapportVisite.getDateDeSaisie());
+        ps.setString(5, rapportVisite.getBilan());
+        ps.setString(6, rapportVisite.getMotif());
+        
+        effectue = ps.executeUpdate();
+        } catch (SQLException ex) {
+            throw new modele.dao.DaoException("DaoRapportVisite::requete : erreur requete : " + ex.getMessage());
+        }
+        
+        return effectue;
     }
 
     @Override
     public RapportVisite getOne(Integer idRapport) throws Exception {
-       RapportVisite result = null;
+        RapportVisite result = null;
         ResultSet rs = null;
+        Jdbc.getInstance().connecter();
         // préparer la requête
         String requete = "SELECT * FROM RAPPORT_VISITE WHERE RAP_NUM=?";
         try {
@@ -50,8 +68,8 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
     public ArrayList<RapportVisite> getAll() throws Exception {
         ArrayList<RapportVisite> result = new ArrayList<RapportVisite>();
         ResultSet rs;
-        
-        String requete = "SELECT * FROM RAPPORT_VISITE ORDER BY RAP_NUM";
+        Jdbc.getInstance().connecter();
+        String requete = "SELECT * FROM rapport_visite  ORDER BY RAP_NUM";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
             rs = ps.executeQuery();
@@ -60,7 +78,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
                 result.add(rapportVisite);
             }
         }catch (Exception e){
-            throw new modele.dao.DaoException("DaoRApportVisite::getAll : erreur requete SELECT : " + e.getMessage());
+            throw new modele.dao.DaoException("DaoRapportVisite::getAll : erreur requete SELECT : " + e.getMessage());
         }
         return result;
     }

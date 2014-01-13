@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import modele.dao.DaoVisiteur;
 import modele.dao.DaoException;
 import modele.dao.DaoLabo;
+import modele.dao.DaoPraticien;
+import modele.dao.DaoRapportVisite;
 import modele.dao.DaoSecteur;
 import modele.jdbc.FabriqueJdbc;
 import modele.jdbc.Jdbc;
@@ -28,12 +30,18 @@ public class TestDao {
     static DaoLabo daoLabo = new DaoLabo();
     static DaoSecteur daoSecteur = new DaoSecteur();
     static DaoVisiteur daoVisiteur = new DaoVisiteur();
+    static DaoPraticien daoPraticien = new DaoPraticien();
+    static DaoRapportVisite daoRapportVisite = new DaoRapportVisite();
 
     // test de lecture des enregistrements de la table LABO 
-    public static boolean testDaoLireLabo() throws DaoException, Exception {
+    public static boolean testDaoLireLabo() {
         boolean ok = true;
         ArrayList<Labo> lesLabo = new ArrayList<Labo>();
-        lesLabo = daoLabo.getAll();
+        try {
+            lesLabo = daoLabo.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
         System.out.println("liste des labos");
         for (Labo unLabo: lesLabo){
             System.out.println(unLabo);
@@ -42,11 +50,15 @@ public class TestDao {
     }
     
     // test de lecture des enregistrements de la table SECTEUR
-    public static boolean testDaoLireSecteur() throws DaoException, Exception {
+    public static boolean testDaoLireSecteur()  {
         boolean ok = true;
         ArrayList<Secteur> lesSecteurs = new ArrayList<Secteur>();
-        lesSecteurs = daoSecteur.getAll();
-        System.out.println("liste des labos");
+        try {
+            lesSecteurs = daoSecteur.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des secteurs");
         for (Secteur unSecteur: lesSecteurs){
             System.out.println(unSecteur);
         }
@@ -54,17 +66,66 @@ public class TestDao {
     }
 
     // test de lecture des enregistrements de la table VISITEUR
-    public static boolean testDaoLireVisiteur() throws DaoException, Exception {
+    public static boolean testDaoLireVisiteur() {
         boolean ok = true;
         ArrayList<Visiteur> lesVisiteurs = new ArrayList<Visiteur>();
-        lesVisiteurs = daoVisiteur.getAll();
-        System.out.println("liste des labos");
+        try {
+            lesVisiteurs = daoVisiteur.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des visiteurs");
         for (Visiteur unVisiteur: lesVisiteurs){
             System.out.println(unVisiteur);
         }
         return ok;
     }
     
+    
+        // test de lecture des enregistrements de la table PRATICIEN
+    public static boolean testDaoLirePraticien() {
+        boolean ok = true;        
+        ArrayList<Praticien> lesPraticiens = new ArrayList<Praticien>();
+        try {
+            lesPraticiens = daoPraticien.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des praticiens");
+        for (Praticien unPraticien: lesPraticiens){
+            System.out.println(unPraticien);
+        }
+        return ok;
+        
+    }
+    
+           // test de lecture des enregistrements de la table VISITEUR
+    public static boolean testDaoLireRapportVisite() throws DaoException, Exception {
+        boolean ok = true;
+        ArrayList<RapportVisite> lesRapportsVisites = new ArrayList<RapportVisite>();
+        lesRapportsVisites = daoRapportVisite.getAll();
+        System.out.println("liste des rapports");
+        for (RapportVisite unRapportVisite: lesRapportsVisites){
+            System.out.println(unRapportVisite);
+        }
+        return ok;
+    }
+    
+           // test de lecture des enregistrements de la table VISITEUR
+    public static boolean testDaoLireUnRapportVisite() {
+        boolean ok = true;
+        RapportVisite unRapportVisite = null;
+        try {
+            unRapportVisite = daoRapportVisite.getOne(3);
+        } catch (Exception ex) {
+           ok = false;
+        }
+        
+        System.out.println("le rapport de visite:");
+        System.out.println(unRapportVisite);
+        
+        return ok;
+    }
    
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException, DaoException, Exception {
@@ -88,6 +149,27 @@ public class TestDao {
         
         System.out.println("\nTest DAO Lire Visiteur");
         if (testDaoLireVisiteur()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO Lire Praticiens");
+        if (testDaoLirePraticien()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO Lire RapportVisite");
+        if (testDaoLireRapportVisite()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO Lire UnRapportVisite");
+        if (testDaoLireUnRapportVisite()) {
             System.out.println("+++ Réussite");
         } else {
             System.out.println("--- Echec");

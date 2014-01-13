@@ -37,7 +37,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelDate" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelMotif" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelPraticien" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelPraticien" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -168,27 +168,27 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNum">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Num&#xe9;ro Rapport"/>
+        <Property name="text" type="java.lang.String" value="Num&#xe9;ro Rapport :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelPraticien">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Praticien"/>
+        <Property name="text" type="java.lang.String" value="Praticien :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelDate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date Rapport"/>
+        <Property name="text" type="java.lang.String" value="Date Rapport :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelMotif">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Motif visite"/>
+        <Property name="text" type="java.lang.String" value="Motif visite :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBilan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="BILAN"/>
+        <Property name="text" type="java.lang.String" value="BILAN :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNum">
@@ -257,16 +257,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pr&#xe9;c&#xe9;dent"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPrecedentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSuivant">
       <Properties>
         <Property name="text" type="java.lang.String" value="Suivant"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSuivantActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonNouveau">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nouveau"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNouveauActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRetour">
       <Properties>
@@ -297,6 +306,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enregistrer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEnregistrerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonFermer">
       <Properties>

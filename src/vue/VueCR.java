@@ -8,6 +8,7 @@ import controleur.CtrlAbstrait;
 import controleur.CtrlCR;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
  * @author btssio
  */
 public class VueCR extends VueAbstraite{
+    
+    DefaultComboBoxModel modelJComboBoxPraticien;
 
     /**
      * Creates new form JFrameCR
@@ -26,6 +29,9 @@ public class VueCR extends VueAbstraite{
     public VueCR(CtrlAbstrait ctrl) {
         super(ctrl);
         initComponents();
+        
+        modelJComboBoxPraticien = new DefaultComboBoxModel();
+        jComboBoxPraticien.setModel(modelJComboBoxPraticien);
     }
 
     /**
@@ -64,15 +70,15 @@ public class VueCR extends VueAbstraite{
 
         jLabelRV.setText("RAPPORTS DE VISITE");
 
-        jLabelNum.setText("Numéro Rapport");
+        jLabelNum.setText("Numéro Rapport :");
 
-        jLabelPraticien.setText("Praticien");
+        jLabelPraticien.setText("Praticien :");
 
-        jLabelDate.setText("Date Rapport");
+        jLabelDate.setText("Date Rapport :");
 
-        jLabelMotif.setText("Motif visite");
+        jLabelMotif.setText("Motif visite :");
 
-        jLabelBilan.setText("BILAN");
+        jLabelBilan.setText("BILAN :");
 
         jTextAreaBilan.setColumns(20);
         jTextAreaBilan.setRows(5);
@@ -91,10 +97,25 @@ public class VueCR extends VueAbstraite{
         jLabelEchantillon.setText("Offre d'échantillons");
 
         jButtonPrecedent.setText("Précédent");
+        jButtonPrecedent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrecedentActionPerformed(evt);
+            }
+        });
 
         jButtonSuivant.setText("Suivant");
+        jButtonSuivant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSuivantActionPerformed(evt);
+            }
+        });
 
         jButtonNouveau.setText("Nouveau");
+        jButtonNouveau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNouveauActionPerformed(evt);
+            }
+        });
 
         jButtonRetour.setText("Retour");
         jButtonRetour.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +129,11 @@ public class VueCR extends VueAbstraite{
         jButtonDetails.setText("Détails");
 
         jButtonEnregistrer.setText("Enregistrer");
+        jButtonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnregistrerActionPerformed(evt);
+            }
+        });
 
         jButtonFermer.setText("Fermer");
         jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +159,7 @@ public class VueCR extends VueAbstraite{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelDate, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelMotif, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelPraticien))
+                                    .addComponent(jLabelPraticien, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBoxPraticien, 0, 179, Short.MAX_VALUE)
@@ -239,6 +265,34 @@ public class VueCR extends VueAbstraite{
         }
     }//GEN-LAST:event_jButtonFermerActionPerformed
 
+    private void jButtonNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouveauActionPerformed
+        ((CtrlCR)controleur).nouveau();
+    }//GEN-LAST:event_jButtonNouveauActionPerformed
+
+    private void jButtonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnregistrerActionPerformed
+        try {
+            ((CtrlCR)controleur).enregistrer();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEnregistrerActionPerformed
+
+    private void jButtonSuivantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuivantActionPerformed
+        try {
+            ((CtrlCR)controleur).suivant();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSuivantActionPerformed
+
+    private void jButtonPrecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrecedentActionPerformed
+        try {
+            ((CtrlCR)controleur).precedent();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonPrecedentActionPerformed
+
     public JButton getjButtonDetails() {
         return jButtonDetails;
     }
@@ -341,6 +395,14 @@ public class VueCR extends VueAbstraite{
 
     public void setjTextFieldNum(JTextField jTextFieldNum) {
         this.jTextFieldNum = jTextFieldNum;
+    }
+
+    public DefaultComboBoxModel getModelJComboBoxPraticien() {
+        return modelJComboBoxPraticien;
+    }
+
+    public void setModelJComboBoxPraticien(DefaultComboBoxModel modelJComboBoxPraticien) {
+        this.modelJComboBoxPraticien = modelJComboBoxPraticien;
     }
 
     
