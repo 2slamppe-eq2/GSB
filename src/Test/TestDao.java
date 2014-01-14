@@ -6,6 +6,7 @@ package Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -106,7 +107,9 @@ public class TestDao {
         lesRapportsVisites = daoRapportVisite.getAll();
         System.out.println("liste des rapports");
         for (RapportVisite unRapportVisite: lesRapportsVisites){
+            unRapportVisite.DateToString();
             System.out.println(unRapportVisite);
+            
         }
         return ok;
     }
@@ -117,6 +120,7 @@ public class TestDao {
         RapportVisite unRapportVisite = null;
         try {
             unRapportVisite = daoRapportVisite.getOne(3);
+            unRapportVisite.DateToString();
         } catch (Exception ex) {
            ok = false;
         }
@@ -125,6 +129,21 @@ public class TestDao {
         System.out.println(unRapportVisite);
         
         return ok;
+    }
+    
+    public static boolean testDaoCreateUnRapportVisite(RapportVisite unRapport){
+        boolean ok = true;
+        try {
+            daoRapportVisite.create(unRapport);
+        } catch (Exception ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        
+        System.out.println("le rapport de visite créé:");
+        System.out.println(unRapport);
+        
+        return ok; 
     }
    
 
@@ -170,6 +189,21 @@ public class TestDao {
         
         System.out.println("\nTest DAO Lire UnRapportVisite");
         if (testDaoLireUnRapportVisite()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        System.out.println("\nTest DAO CreateUnRapportVisite");
+        Visiteur unVisiteur = daoVisiteur.getOne("zzz");
+        Praticien unPraticien = daoPraticien.getOne(1);        
+        RapportVisite unRapport = new RapportVisite();
+        unRapport.setVisiteur(unVisiteur);
+        unRapport.setNumero(2);
+        unRapport.setBilan("test");
+        unRapport.setDateDeSaisieString("12/12/12");
+        unRapport.setMotif("test");
+        unRapport.setPraticien(unPraticien);
+        if (testDaoCreateUnRapportVisite(unRapport)) {
             System.out.println("+++ Réussite");
         } else {
             System.out.println("--- Echec");

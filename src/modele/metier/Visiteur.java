@@ -21,6 +21,10 @@ public class Visiteur {
     private Date dateEmbauche;
     private Labo labo;
     private Secteur secteur;
+    private String login;
+    
+
+   
 
     public Visiteur(String matricule, String nom, String prenom, String adresse, String CP, String ville, Date dateEmbauche, Labo labo, Secteur secteur) {
         this.matricule = matricule;
@@ -107,6 +111,14 @@ public class Visiteur {
 
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
+    }
+    
+     public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override

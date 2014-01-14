@@ -266,7 +266,11 @@ public class VueCR extends VueAbstraite{
     }//GEN-LAST:event_jButtonFermerActionPerformed
 
     private void jButtonNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouveauActionPerformed
-        ((CtrlCR)controleur).nouveau();
+        try {
+            ((CtrlCR)controleur).nouveau();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonNouveauActionPerformed
 
     private void jButtonEnregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnregistrerActionPerformed

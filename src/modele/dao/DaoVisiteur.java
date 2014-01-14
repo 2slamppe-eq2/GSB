@@ -25,7 +25,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
     public int create(Visiteur unVisiteur) throws Exception {
         Jdbc.getInstance().connecter();
         int rs=0;
-        String requete = "INSERT INTO VISITEUR VALUES(?,?,?,?,?,?,?,?,?);";
+        String requete = "INSERT INTO VISITEUR VALUES(?,?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
             ps.setString(1,unVisiteur.getMatricule());
@@ -37,6 +37,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
             ps.setDate(7,unVisiteur.getDateEmbauche());
             ps.setString(8,unVisiteur.getSecteur().getCode());
             ps.setString(9,unVisiteur.getLabo().getCode());
+            ps.setString(1,unVisiteur.getLogin());
             rs = ps.executeUpdate(requete);
             return rs;
             
@@ -110,6 +111,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
             visiteur.setDateEmbauche(rs.getDate("VIS_DATEEMBAUCHE"));
             visiteur.setSecteur(daoSecteur.getOne(rs.getString("SEC_CODE")));
             visiteur.setLabo(daoLabo.getOne(rs.getString("LAB_CODE")));
+            visiteur.setLogin(rs.getString("VIS_LOGIN"));
             return visiteur;
         } catch (SQLException ex) {
             throw new DaoException("DaoVisiteur - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());

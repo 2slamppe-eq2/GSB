@@ -16,6 +16,7 @@ public class RapportVisite {
     private int numero;
     private Praticien praticien;
     private Date dateDeSaisie;
+    private String dateDeSaisieString;
     private String bilan;
     private String motif;
 
@@ -31,6 +32,13 @@ public class RapportVisite {
     public RapportVisite() {
     }
 
+    public void DateToString(){
+        String [] date = dateDeSaisie.toString().split("-");
+        
+        
+        dateDeSaisieString = date[2]+"/"+date[1]+"/"+date[0].substring(2);
+        
+    }
     public Visiteur getVisiteur() {
         return visiteur;
     }
@@ -77,6 +85,21 @@ public class RapportVisite {
 
     public void setMotif(String motif) {
         this.motif = motif;
+    }
+
+    public String getDateDeSaisieString() {
+        return dateDeSaisieString;
+    }
+
+    public void setDateDeSaisieString(String dateDeSaisieString) {
+        this.dateDeSaisieString = dateDeSaisieString;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "RapportVisite{" + "visiteur=" + visiteur + ", numero=" + numero + ", praticien=" + praticien + ", dateDeSaisie=" + dateDeSaisie + ", dateDeSaisieString=" + dateDeSaisieString + ", bilan=" + bilan + ", motif=" + motif + '}';
     }
     
     

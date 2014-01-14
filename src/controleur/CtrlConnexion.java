@@ -3,9 +3,12 @@
  * and open the template in the editor.
  */
 package controleur;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modele.dao.DaoVisiteur;
+import modele.metier.Visiteur;
 import vue.*;
 
 /**
@@ -13,6 +16,8 @@ import vue.*;
  * @author btssio
  */
 public class CtrlConnexion extends CtrlAbstrait{
+    
+    private DaoVisiteur daoVisiteur = new DaoVisiteur();
     
      public CtrlConnexion(CtrlPrincipal ctrlPrincipal) {
          super(ctrlPrincipal);
@@ -35,18 +40,30 @@ public class CtrlConnexion extends CtrlAbstrait{
     
     public void seConnecter() throws Exception{
         VueConnexion vueConnexion = getVue();
-        JTextField jTextFieldId = vueConnexion.getjTextFieldIdentifiant();
-        JPasswordField jPasswordFieldPwd = vueConnexion.getjPasswordFieldPwd();
+        String identifiant = vueConnexion.getjTextFieldIdentifiant().getText();
+        String motDePasse= new String(vueConnexion.getjPasswordFieldPwd().getPassword());
+//        boolean visiteurAccepte =false;
+        
+//        ArrayList<Visiteur> lesVisiteurs = daoVisiteur.getAll();
+//        
+//        for (Visiteur unVisiteur: lesVisiteurs){
+//            if(unVisiteur.getLogin().equals(identifiant) && String.valueOf(unVisiteur.getDateEmbauche()).equals(motDePasse)){
+//                visiteurAccepte = true;
+//                ctrlPrincipal.setVisiteurConnecte(unVisiteur);
+//            }
+//        }
+//        if(visiteurAccepte){
+//            this.getCtrlPrincipal().action(EnumAction.ACCUEIL_GCR_AJOUTER);
+//        }
         String id = "swiss";
         String pwd = "jun-2003";
-        String pwdEntre = new String(jPasswordFieldPwd.getPassword());
-        JLabel jLabelErreur = vueConnexion.getjLabelErreur();
         
-        if(id.equals(jTextFieldId.getText())&&pwd.equals(pwdEntre)){
+        if(id.equals(identifiant)&&pwd.equals(motDePasse)){
             this.getCtrlPrincipal().action(EnumAction.ACCUEIL_GCR_AJOUTER);
+        }
             
-        }else{
-            jLabelErreur.setText("L'identifiant ou le mot de passe est incorrect!");
+        else{
+            getVue().getjLabelErreur().setText("L'identifiant ou le mot de passe est incorrect!");
         }
         
         

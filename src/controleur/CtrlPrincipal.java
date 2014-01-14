@@ -5,6 +5,7 @@
 package controleur;
 
 import modele.metier.RapportVisite;
+import modele.metier.Visiteur;
 
 /**
  *
@@ -19,6 +20,7 @@ public class CtrlPrincipal {
     private CtrlPraticien ctrlPraticien = null;
     private CtrlVisiteur ctrlVisiteur = null;
     private CtrlNouveauVisiteur ctrlNouveauVisiteur = null;
+    private Visiteur VisiteurConnecte = null;
     
     public void action(){
         if(ctrlConnexion == null){
@@ -80,13 +82,21 @@ public class CtrlPrincipal {
         ctrlConnexion.getVue().setVisible(false);
         
     }
+
+    public Visiteur getVisiteurConnecte() {
+        return VisiteurConnecte;
+    }
+
+    public void setVisiteurConnecte(Visiteur VisiteurConnecte) {
+        this.VisiteurConnecte = VisiteurConnecte;
+    }
     
     private void afficherCR () throws Exception{
         
         if(ctrlCR == null){
             ctrlCR = new CtrlCR(this);
             ctrlCR.remplirPraticien();
-            ctrlCR.remplirRapportVisite(null);
+            ctrlCR.remplirRapportVisite(null, 0);
             
         }
         ctrlCR.getVue().getjButtonEnregistrer().setVisible(false);

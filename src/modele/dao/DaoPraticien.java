@@ -51,7 +51,6 @@ public class DaoPraticien implements DaoInterface<Praticien,Integer >{
     public ArrayList<Praticien> getAll() throws Exception {
         ArrayList<Praticien> result = new ArrayList<Praticien>();
         ResultSet rs;
-        
         String requete = "SELECT * FROM PRATICIEN ORDER BY PRA_NUM";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
