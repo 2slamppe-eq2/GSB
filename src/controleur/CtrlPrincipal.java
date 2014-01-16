@@ -24,7 +24,6 @@ public class CtrlPrincipal {
     private CtrlMedicament ctrlMedicament = null;
     private CtrlPraticien ctrlPraticien = null;
     private CtrlVisiteur ctrlVisiteur = null;
-    private CtrlNouveauVisiteur ctrlNouveauVisiteur = null;
     private Visiteur VisiteurConnecte = null;
     
     public void action(){
