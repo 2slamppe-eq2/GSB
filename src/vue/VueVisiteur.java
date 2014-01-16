@@ -308,11 +308,11 @@ public class VueVisiteur extends VueAbstraite {
     }//GEN-LAST:event_jComboBoxChercherActionPerformed
 
     private void jButtonNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouveauActionPerformed
-        try {
-            ((CtrlVisiteur)controleur).nouveauVisiteur();
-        } catch (Exception ex) {
-            Logger.getLogger(VueVisiteur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            ((CtrlVisiteur)controleur).nouveauVisiteur();
+//        } catch (Exception ex) {
+//            Logger.getLogger(VueVisiteur.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButtonNouveauActionPerformed
 
     public JComboBox getjComboBoxChercher() {

@@ -6,6 +6,7 @@ package vue;
 
 import controleur.CtrlAbstrait;
 import controleur.CtrlCR;
+import controleur.CtrlPrincipal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -65,6 +66,8 @@ public class VueCR extends VueAbstraite{
         jButtonDetails = new javax.swing.JButton();
         jButtonEnregistrer = new javax.swing.JButton();
         jButtonFermer = new javax.swing.JButton();
+        jButtonAjouterMed = new javax.swing.JButton();
+        jButtonSupprimerMed = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,13 +89,15 @@ public class VueCR extends VueAbstraite{
 
         jTableEchantillon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
-                "Médicament", "NB Echantillon"
+                "Médicament", "Nombre d'échantillon"
             }
         ));
         jScrollPane2.setViewportView(jTableEchantillon);
+        jTableEchantillon.getColumnModel().getColumn(0).setResizable(false);
+        jTableEchantillon.getColumnModel().getColumn(1).setResizable(false);
 
         jLabelEchantillon.setText("Offre d'échantillons");
 
@@ -127,6 +132,11 @@ public class VueCR extends VueAbstraite{
         jComboBoxPraticien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonDetails.setText("Détails");
+        jButtonDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDetailsActionPerformed(evt);
+            }
+        });
 
         jButtonEnregistrer.setText("Enregistrer");
         jButtonEnregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +149,20 @@ public class VueCR extends VueAbstraite{
         jButtonFermer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFermerActionPerformed(evt);
+            }
+        });
+
+        jButtonAjouterMed.setText("Ajouter");
+        jButtonAjouterMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAjouterMedActionPerformed(evt);
+            }
+        });
+
+        jButtonSupprimerMed.setText("Supprimer");
+        jButtonSupprimerMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSupprimerMedActionPerformed(evt);
             }
         });
 
@@ -158,13 +182,13 @@ public class VueCR extends VueAbstraite{
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelMotif, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelPraticien, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jLabelPraticien, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelMotif, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxPraticien, 0, 179, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldDate)
-                                    .addComponent(jTextFieldMotif))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxPraticien, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldMotif, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonDetails))
                     .addGroup(layout.createSequentialGroup()
@@ -172,32 +196,32 @@ public class VueCR extends VueAbstraite{
                         .addComponent(jLabelBilan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonPrecedent)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonSuivant, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonNouveau))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButtonNouveau)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelEchantillon)
-                                .addContainerGap())
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelEchantillon)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jButtonEnregistrer)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRetour))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(jButtonFermer)))
-                        .addContainerGap())))
+                                .addComponent(jButtonSupprimerMed)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAjouterMed)))
+                        .addGap(0, 24, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jButtonEnregistrer)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonRetour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonFermer)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelRV)
@@ -212,41 +236,46 @@ public class VueCR extends VueAbstraite{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNum)
                     .addComponent(jTextFieldNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPraticien)
                     .addComponent(jComboBoxPraticien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDetails))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDate)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelMotif)
-                    .addComponent(jTextFieldMotif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButtonDetails)
+                    .addComponent(jLabelEchantillon))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDate)
+                            .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldMotif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMotif))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelBilan)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelBilan)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelEchantillon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAjouterMed)
+                            .addComponent(jButtonSupprimerMed))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonFermer, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonPrecedent)
                             .addComponent(jButtonSuivant)
                             .addComponent(jButtonNouveau)
-                            .addComponent(jButtonRetour)
-                            .addComponent(jButtonEnregistrer))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jButtonFermer)))
+                            .addComponent(jButtonEnregistrer)
+                            .addComponent(jButtonRetour))
+                        .addGap(18, 18, 18)))
                 .addContainerGap())
         );
 
@@ -254,7 +283,11 @@ public class VueCR extends VueAbstraite{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
-       
+        try {
+            ((CtrlCR)controleur).retourRapport();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonRetourActionPerformed
 
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
@@ -296,6 +329,26 @@ public class VueCR extends VueAbstraite{
             Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonPrecedentActionPerformed
+
+    private void jButtonAjouterMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterMedActionPerformed
+        try {
+            ((CtrlCR)controleur).AjouterUnEchantillon();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonAjouterMedActionPerformed
+
+    private void jButtonSupprimerMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupprimerMedActionPerformed
+        ((CtrlCR)controleur).supprimerMedicament();
+    }//GEN-LAST:event_jButtonSupprimerMedActionPerformed
+
+    private void jButtonDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailsActionPerformed
+        try {
+            ((CtrlCR)controleur).detailsPraticien();
+        } catch (Exception ex) {
+            Logger.getLogger(VueCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonDetailsActionPerformed
 
     public JButton getjButtonDetails() {
         return jButtonDetails;
@@ -409,9 +462,26 @@ public class VueCR extends VueAbstraite{
         this.modelJComboBoxPraticien = modelJComboBoxPraticien;
     }
 
+    public JButton getjButtonAjouterMed() {
+        return jButtonAjouterMed;
+    }
+
+    public void setjButtonAjouterMed(JButton jButtonAjouterMed) {
+        this.jButtonAjouterMed = jButtonAjouterMed;
+    }
+
+    public JButton getjButtonSupprimerMed() {
+        return jButtonSupprimerMed;
+    }
+
+    public void setjButtonSupprimerMed(JButton jButtonSupprimerMed) {
+        this.jButtonSupprimerMed = jButtonSupprimerMed;
+    }
+
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAjouterMed;
     private javax.swing.JButton jButtonDetails;
     private javax.swing.JButton jButtonEnregistrer;
     private javax.swing.JButton jButtonFermer;
@@ -419,6 +489,7 @@ public class VueCR extends VueAbstraite{
     private javax.swing.JButton jButtonPrecedent;
     private javax.swing.JButton jButtonRetour;
     private javax.swing.JButton jButtonSuivant;
+    private javax.swing.JButton jButtonSupprimerMed;
     private javax.swing.JComboBox jComboBoxPraticien;
     private javax.swing.JLabel jLabelBilan;
     private javax.swing.JLabel jLabelDate;

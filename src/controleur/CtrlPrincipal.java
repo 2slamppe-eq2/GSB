@@ -4,6 +4,11 @@
  */
 package controleur;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modele.jdbc.Jdbc;
+import modele.metier.Praticien;
 import modele.metier.RapportVisite;
 import modele.metier.Visiteur;
 
@@ -59,9 +64,9 @@ public class CtrlPrincipal {
             case VISITEUR_AFFICHER:
                 afficherVisiteur();
                 break;
-            case VISITEUR_AJOUTER:
-                afficherVueNouveauVisiteur();
-                break;
+//            case VISITEUR_AJOUTER:
+//                afficherVueNouveauVisiteur();
+//                break;
             case VISITEUR_QUITTER:
                 quitterVisiteur();
                 break;
@@ -72,6 +77,18 @@ public class CtrlPrincipal {
         }
     }
     
+    public void AfficherPraticien(Praticien unPraticien) throws Exception{
+        if(ctrlPraticien == null){
+            ctrlPraticien = new CtrlPraticien(this);
+            ctrlPraticien.chargerListePraticien();
+            ctrlPraticien.remplirPraticien(unPraticien,0); 
+        }
+        ctrlPraticien.getVue().setEnabled(true);
+        ctrlPraticien.getVue().setVisible(true);
+        ctrlGCR.getVue().setVisible(false);
+        
+    }
+    //affiche la vue VueCGR
     private void accueilGCRAfficher(){
         
         if(ctrlGCR == null){
@@ -90,23 +107,23 @@ public class CtrlPrincipal {
     public void setVisiteurConnecte(Visiteur VisiteurConnecte) {
         this.VisiteurConnecte = VisiteurConnecte;
     }
-    
+    //affiche la vueCR
     private void afficherCR () throws Exception{
         
         if(ctrlCR == null){
             ctrlCR = new CtrlCR(this);
+            
             ctrlCR.remplirPraticien();
             ctrlCR.remplirRapportVisite(null, 0);
             
         }
-        ctrlCR.getVue().getjButtonEnregistrer().setVisible(false);
-        ctrlCR.getVue().getjButtonRetour().setVisible(false);
+        ctrlCR.visibiliteBouton(false);
         ctrlCR.getVue().setEnabled(true);
         ctrlCR.getVue().setVisible(true);
         ctrlGCR.getVue().setVisible(false);
         
     }
-    
+    //affiche la vueMedicament
     private void afficherMedicament() throws Exception{
     
         if(ctrlMedicament == null){
@@ -117,17 +134,19 @@ public class CtrlPrincipal {
         ctrlMedicament.getVue().setVisible(true);
         ctrlGCR.getVue().setVisible(false);
     }
-    
-    private void afficherPraticien(){
+    //affiche la vuePraticien
+    private void afficherPraticien() throws Exception{
     
         if(ctrlPraticien == null){
             ctrlPraticien = new CtrlPraticien(this);
+            ctrlPraticien.chargerListePraticien();
+            ctrlPraticien.remplirPraticien(null,0); 
         }
         ctrlPraticien.getVue().setEnabled(true);
         ctrlPraticien.getVue().setVisible(true);
         ctrlGCR.getVue().setVisible(false);
     }
-    
+    //affiche la vueVisiteur
     private void afficherVisiteur() throws Exception{
     
         if(ctrlVisiteur == null){
@@ -141,28 +160,33 @@ public class CtrlPrincipal {
         ctrlGCR.getVue().setEnabled(false);
     }
     
-    private void afficherVueNouveauVisiteur() throws Exception{//erreur vue s'affiche pas
-        if(ctrlNouveauVisiteur == null){
-            ctrlNouveauVisiteur = new CtrlNouveauVisiteur(this);
-        }
-        ctrlNouveauVisiteur.getVue().setEnabled(true);
-        ctrlNouveauVisiteur.getVue().setVisible(true);
-        ctrlVisiteur.getVue().setVisible(false);
-    }
-    
+//    private void afficherVueNouveauVisiteur() throws Exception{//erreur vue s'affiche pas
+//        if(ctrlNouveauVisiteur == null){
+//            ctrlNouveauVisiteur = new CtrlNouveauVisiteur(this);
+//        }
+//        ctrlNouveauVisiteur.getVue().setEnabled(true);
+//        ctrlNouveauVisiteur.getVue().setVisible(true);
+//        ctrlVisiteur.getVue().setVisible(false);
+//    }
+    //ferme la vueCR
     private void quitterCR(){
         ctrlCR.getVue().setVisible(false);
         ctrlCR.getVue().setEnabled(false);
         ctrlGCR.getVue().setVisible(true);
         ctrlGCR.getVue().setEnabled(true);
     }
-    
+    //ferme la vueCR
     private void quitterGCR(){
-        System.exit(0);
-       
+        //deconnexion de la base de données
+        try {
+            Jdbc.getInstance().deconnecter();
+        } catch (SQLException ex) {
+            Logger.getLogger(CtrlPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       System.exit(0);
         
     }
-    
+    //ferme la vueCR
     private void quitterMedicament(){
         ctrlMedicament.getVue().setVisible(false);
         ctrlMedicament.getVue().setEnabled(false);
@@ -170,7 +194,7 @@ public class CtrlPrincipal {
         ctrlGCR.getVue().setEnabled(true);
         
     }
-    
+    //ferme la vueCR
     private void quitterPraticien(){
         ctrlPraticien.getVue().setVisible(false);
         ctrlPraticien.getVue().setEnabled(false);
@@ -178,7 +202,7 @@ public class CtrlPrincipal {
         ctrlGCR.getVue().setEnabled(true);
         
     }
-    
+    //ferme la vueCR
     private void quitterVisiteur(){
         ctrlVisiteur.getVue().setVisible(false);
         ctrlVisiteur.getVue().setEnabled(false);
@@ -186,8 +210,9 @@ public class CtrlPrincipal {
         ctrlGCR.getVue().setEnabled(true);
         
     }
-    
+    //ferme la vueCR
     private void quitterConnexion(){
+        
         System.exit(0);
     }
     

@@ -47,7 +47,7 @@ public class CtrlVisiteur extends CtrlAbstrait{
     public void quitter() throws Exception{
         this.getCtrlPrincipal().action(EnumAction.VISITEUR_QUITTER);
     }
-    
+    //rempli la JComboBox avec la liste de tous les visiteurs
     public void chargerListeVisiteurs() throws Exception {
         
         ArrayList<Visiteur> lesVisiteurs = getVisiteurs();
@@ -58,10 +58,12 @@ public class CtrlVisiteur extends CtrlAbstrait{
             getVue().getModelJComboBoxChercher().addElement(unVisiteur);
         }
     } 
-    
+    //rempli les champs avec les informations d'un visiteur
     public void remplir(Visiteur unVisiteur, int item) {
+        //la première fois que la fonction est appelé dans le controleur principal visiteur est nul, il est remplacé par le premier visiteur de la liste
         if(unVisiteur == null){
-            try {   
+            try {  
+                //chargement de la liste de tous les visiteurs
                 ArrayList<Visiteur> LesVisiteur = getVisiteurs();
                 unVisiteur = LesVisiteurs.get(0);
             } catch (Exception ex) {
@@ -81,7 +83,7 @@ public class CtrlVisiteur extends CtrlAbstrait{
         getVue().getjComboBoxChercher().setSelectedIndex(item);
         
     } 
-    
+    //lors du choix d'un visiteur dans la JComboBox on affiche de nouvelles informations
     public void choixVisiteur(){
         Visiteur unVisiteur = new Visiteur();
         if(!getVue().getjComboBoxChercher().getSelectedItem().toString().equals("- - - - - - -")){
@@ -92,66 +94,65 @@ public class CtrlVisiteur extends CtrlAbstrait{
               
         
     }
-    
+    //lors du clique sur suivant on affiche le visiteur suivant dans la liste de tous les visiteurs
     public void suivant() throws Exception{        
-        
+        //chargement du visiteur actuellement affiché à partir de son matricule affiché dans la champ matricule
         Visiteur VisiteurActuel = new Visiteur();
         try {
             VisiteurActuel = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
         } catch (Exception ex) {
             Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //chargement de la liste de tous les visiteur
         ArrayList<Visiteur> LesVisiteur = getVisiteurs();
         ArrayList<String> MatriculeVisiteur = new ArrayList<String>();
         for(Visiteur unVisiteur: LesVisiteur){
              MatriculeVisiteur.add(unVisiteur.getMatricule());
         }
-        
+        //on cherche l'index du visiteur actuelle dans la liste de tous les visiteurs
         int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
         if(index < LesVisiteur.size()-1 && index>=0){
-        remplir(LesVisiteur.get(index+1), (index+2));
+        remplir(LesVisiteur.get(index+1), (index+2));//on rempli les champs avec les informations du visiteur suivant
         }
         
         
         
         
-        //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
     }
     
-    
+        //lors du clique sur precedent on affiche les informations du visiteur précédent
         public void precedent() throws Exception{        
         
+        //chargement du visiteur actuellement affiché à partir de son matricule affiché dans la champ matricule
         Visiteur VisiteurActuel = new Visiteur();
         try {
             VisiteurActuel = daoVisiteur.getOne(getVue().getjTextFieldMatricule().getText());
         } catch (Exception ex) {
             Logger.getLogger(CtrlVisiteur.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //chargement de la liste de tous les visiteur
         ArrayList<Visiteur> LesVisiteur = getVisiteurs();
         ArrayList<String> MatriculeVisiteur = new ArrayList<String>();
         for(Visiteur unVisiteur: LesVisiteur){
              MatriculeVisiteur.add(unVisiteur.getMatricule());
         }
-        
+        //on cherche l'index du visiteur actuelle dans la liste de tous les visiteurs
         int index = MatriculeVisiteur.indexOf(VisiteurActuel.getMatricule());
         if(index > 0){
-        remplir(LesVisiteur.get(index-1), index);
+        remplir(LesVisiteur.get(index-1), index);//on remplit les champs avec les informations du visiteur suivant
         }
         
         
         
         
-        //obtenir liste de tous les visiteurs, trouver le visiteurs actuel et charger le suivant
     }
     
-    public void nouveauVisiteur() throws Exception{        
-        this.getCtrlPrincipal().action(EnumAction.VISITEUR_AJOUTER);        
-    }
+//    public void nouveauVisiteur() throws Exception{        
+//        this.getCtrlPrincipal().action(EnumAction.VISITEUR_AJOUTER);        
+//    }
     
-    public void OuvrirVuePraticien() throws Exception{
-        this.getCtrlPrincipal().action(EnumAction.PRATICIEN_AFFICHER);
-    }
     
+    //charge la liste de visiteurs une seule fois
     public static ArrayList<Visiteur> getVisiteurs() throws Exception{
        if (LesVisiteurs==null){
            LesVisiteurs = daoVisiteur.getAll();

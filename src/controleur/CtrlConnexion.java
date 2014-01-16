@@ -57,7 +57,7 @@ public class CtrlConnexion extends CtrlAbstrait{
 //        }
         String id = "swiss";
         String pwd = "jun-2003";
-        
+        //si l'identifiant et le mot de passe rentrer sont égaux à ceux donner aux dessus la page d'accueil s'affiche
         if(id.equals(identifiant)&&pwd.equals(motDePasse)){
             this.getCtrlPrincipal().action(EnumAction.ACCUEIL_GCR_AJOUTER);
         }

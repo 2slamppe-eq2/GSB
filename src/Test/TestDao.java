@@ -15,7 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.dao.DaoVisiteur;
 import modele.dao.DaoException;
+import modele.dao.DaoFamille;
 import modele.dao.DaoLabo;
+import modele.dao.DaoMedicament;
+import modele.dao.DaoOffrir;
 import modele.dao.DaoPraticien;
 import modele.dao.DaoRapportVisite;
 import modele.dao.DaoSecteur;
@@ -33,6 +36,10 @@ public class TestDao {
     static DaoVisiteur daoVisiteur = new DaoVisiteur();
     static DaoPraticien daoPraticien = new DaoPraticien();
     static DaoRapportVisite daoRapportVisite = new DaoRapportVisite();
+    static DaoFamille daoFamille = new DaoFamille();
+    static DaoMedicament daoMedicament = new DaoMedicament();
+    static DaoOffrir daoOffrir = new DaoOffrir();
+            
 
     // test de lecture des enregistrements de la table LABO 
     public static boolean testDaoLireLabo() {
@@ -100,7 +107,7 @@ public class TestDao {
         
     }
     
-           // test de lecture des enregistrements de la table VISITEUR
+           // test de lecture des enregistrements de la table RAPPORTVISITE
     public static boolean testDaoLireRapportVisite() throws DaoException, Exception {
         boolean ok = true;
         ArrayList<RapportVisite> lesRapportsVisites = new ArrayList<RapportVisite>();
@@ -114,7 +121,7 @@ public class TestDao {
         return ok;
     }
     
-           // test de lecture des enregistrements de la table VISITEUR
+           // test de lecture d'un enregistrement de la table RAPPORTVISITE
     public static boolean testDaoLireUnRapportVisite() {
         boolean ok = true;
         RapportVisite unRapportVisite = null;
@@ -131,6 +138,7 @@ public class TestDao {
         return ok;
     }
     
+     //test d'insertion d'un rapport dans la table RAPPORTVISITE     
     public static boolean testDaoCreateUnRapportVisite(RapportVisite unRapport){
         boolean ok = true;
         try {
@@ -146,6 +154,68 @@ public class TestDao {
         return ok; 
     }
    
+    // test de lecture des enregistrements de la table FAMILLE
+    public static boolean testDaoLireFamille()  {
+        boolean ok = true;
+        ArrayList<Famille> lesFamilles = new ArrayList<Famille>();
+        try {
+            lesFamilles = daoFamille.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des familles");
+        for (Famille uneFamille: lesFamilles){
+            System.out.println(uneFamille);
+        }
+        return ok;
+    }
+ 
+    // test de lecture des enregistrements de la table MEDICAMENT
+    public static boolean testDaoLireMedicament()  {
+        boolean ok = true;
+        ArrayList<Medicament> lesMedicaments = new ArrayList<Medicament>();
+        try {
+            lesMedicaments = daoMedicament.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des medicaments");
+        for (Medicament unMedicament: lesMedicaments){
+            System.out.println(unMedicament);
+        }
+        return ok;
+    }
+    // test de lecture des enregistrements de la table OFFRIR
+    public static boolean testDaoLireOffrir()  {
+        boolean ok = true;
+        ArrayList<Echantillon> lesEchantillons = new ArrayList<Echantillon>();
+        try {
+            lesEchantillons = daoOffrir.getAll();
+        } catch (Exception ex) {
+            ok = false;
+        }
+        System.out.println("liste des échantillons");
+        for (Echantillon unEchantillon: lesEchantillons){
+            System.out.println(unEchantillon);
+        }
+        return ok;
+    }
+    
+    //test d'insertion d'un enregistrement dans la table OFFRIR     
+    public static boolean testDaoCreateOffrir(Echantillon unEchantillon){
+        boolean ok = true;
+        try {
+            daoOffrir.create(unEchantillon);
+        } catch (Exception ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+            ok = false;
+        }
+        
+        System.out.println("l'échantillon créé:");
+        System.out.println(unEchantillon);
+        
+        return ok; 
+    }
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException, DaoException, Exception {
         System.out.println("Tests unitaires DAO");
@@ -198,12 +268,42 @@ public class TestDao {
         Praticien unPraticien = daoPraticien.getOne(1);        
         RapportVisite unRapport = new RapportVisite();
         unRapport.setVisiteur(unVisiteur);
-        unRapport.setNumero(2);
+        unRapport.setNumero(daoRapportVisite.getMaxNumRapport()+1);
         unRapport.setBilan("test");
         unRapport.setDateDeSaisieString("12/12/12");
         unRapport.setMotif("test");
         unRapport.setPraticien(unPraticien);
         if (testDaoCreateUnRapportVisite(unRapport)) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO LireFamille");
+        if (testDaoLireFamille()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO LireMedicament");
+        if (testDaoLireMedicament()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO LireOffrir");
+        if (testDaoLireOffrir()) {
+            System.out.println("+++ Réussite");
+        } else {
+            System.out.println("--- Echec");
+        }
+        
+        System.out.println("\nTest DAO CreateOffrir");
+        Echantillon unEchantillon = new Echantillon(unRapport, daoMedicament.getOne("3MYC7"), 10);
+ 
+        if (testDaoCreateOffrir(unEchantillon)) {
             System.out.println("+++ Réussite");
         } else {
             System.out.println("--- Echec");
@@ -214,3 +314,5 @@ public class TestDao {
 
     }
 }
+
+

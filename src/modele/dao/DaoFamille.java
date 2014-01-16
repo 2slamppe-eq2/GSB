@@ -9,60 +9,62 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import modele.jdbc.*;
-import modele.metier.*;
+import modele.jdbc.Jdbc;
+import modele.metier.Famille;
+import modele.metier.Secteur;
+
 /**
  *
  * @author btssio
  */
-public class DaoSecteur implements DaoInterface<Secteur, String>{
+public class DaoFamille implements DaoInterface<Famille, String>{
 
     @Override
-    public int create(Secteur objetMetier) throws Exception {
+    public int create(Famille objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Secteur getOne(String idSecteur) throws Exception {
-        Secteur result = null;
+    public Famille getOne(String idFamille) throws Exception {
+        Famille result = null;
         ResultSet rs = null;
         // préparer la requête
-        String requete = "SELECT * FROM SECTEUR WHERE SEC_CODE=?";
+        String requete = "SELECT * FROM SECTEUR WHERE FAM_CODE=?";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idSecteur);
+            ps.setString(1, idFamille);
             rs = ps.executeQuery();
             if (rs.next()) {
                 result = chargerUnEnregistrement(rs);
             }
         } catch (SQLException ex) {
-            throw new modele.dao.DaoException("DaoSecteur::getOne : erreur requete SELECT : " + ex.getMessage());
+            throw new modele.dao.DaoException("DaoFamille::getOne : erreur requete SELECT : " + ex.getMessage());
         }
         return (result);
     }
 
     @Override
-    public ArrayList<Secteur> getAll() throws Exception {
-        ArrayList<Secteur> result = new ArrayList<Secteur>();
+    public ArrayList<Famille> getAll() throws Exception {
+        ArrayList<Famille> result = new ArrayList<Famille>();
         ResultSet rs;
         // préparer la requête
-        String requete = "SELECT * FROM SECTEUR";
+        String requete = "SELECT * FROM FAMILLE";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
             rs = ps.executeQuery();
             // Charger les enregistrements dans la collection
             while (rs.next()) {
-                Secteur unSecteur = chargerUnEnregistrement(rs);
-                result.add(unSecteur);
+                Famille uneFamille = chargerUnEnregistrement(rs);
+                result.add(uneFamille);
             }
         } catch (SQLException ex) {
-            throw new modele.dao.DaoException("DaoSecteur::getAll : erreur requete SELECT : " + ex.getMessage());
+            throw new modele.dao.DaoException("DaoFamille::getAll : erreur requete SELECT : " + ex.getMessage());
         }
         return(result);
     }
 
     @Override
-    public int update(String idMetier, Secteur objetMetier) throws Exception {
+    public int update(String idMetier, Famille objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -71,15 +73,15 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-        private Secteur chargerUnEnregistrement(ResultSet rs) throws DaoException {
+     private Famille chargerUnEnregistrement(ResultSet rs) throws DaoException {
         try {
-            Secteur secteur = new Secteur();
-            secteur.setCode(rs.getString("SEC_CODE"));
-            secteur.setLibelle(rs.getString("SEC_LIBELLE"));
+            Famille famille = new Famille();
+            famille.setCode(rs.getString("FAM_CODE"));
+            famille.setLibelle(rs.getString("FAM_LIBELLE"));
         
-            return secteur;
+            return famille;
         } catch (SQLException ex) {
-            throw new DaoException("DaoSecteur - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+            throw new DaoException("DaoFamille - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
         }
     }
     

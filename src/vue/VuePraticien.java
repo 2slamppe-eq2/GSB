@@ -8,12 +8,19 @@ import controleur.CtrlAbstrait;
 import controleur.CtrlPraticien;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 /**
  *
  * @author btssio
  */
 public class VuePraticien extends VueAbstraite {
+     DefaultComboBoxModel modelJComboBoxChercher;
+     DefaultComboBoxModel modelJComboBoxExercice;
+     DefaultComboBoxModel modelJComboBoxNotoriete;
 
     /**
      * Creates new form JFramePraticien
@@ -21,6 +28,12 @@ public class VuePraticien extends VueAbstraite {
     public VuePraticien(CtrlAbstrait ctrl) {
         super(ctrl);
         initComponents();
+         modelJComboBoxChercher = new DefaultComboBoxModel();
+        modelJComboBoxExercice = new DefaultComboBoxModel();
+        modelJComboBoxNotoriete = new DefaultComboBoxModel();
+        jComboBoxChercher.setModel(modelJComboBoxChercher);
+        jComboBoxExercice.setModel(modelJComboBoxExercice);
+        jComboBoxNotoriete.setModel(modelJComboBoxNotoriete);
     }
 
     /**
@@ -239,6 +252,110 @@ public class VuePraticien extends VueAbstraite {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JComboBox getjComboBoxChercher() {
+        return jComboBoxChercher;
+    }
+
+    public void setjComboBoxChercher(JComboBox jComboBoxChercher) {
+        this.jComboBoxChercher = jComboBoxChercher;
+    }
+
+    public JComboBox getjComboBoxExercice() {
+        return jComboBoxExercice;
+    }
+
+    public void setjComboBoxExercice(JComboBox jComboBoxExercice) {
+        this.jComboBoxExercice = jComboBoxExercice;
+    }
+
+    public JComboBox getjComboBoxNotoriete() {
+        return jComboBoxNotoriete;
+    }
+
+    public void setjComboBoxNotoriete(JComboBox jComboBoxNotoriete) {
+        this.jComboBoxNotoriete = jComboBoxNotoriete;
+    }
+
+    public JTextField getjTextFieldAdresse() {
+        return jTextFieldAdresse;
+    }
+
+    public void setjTextFieldAdresse(JTextField jTextFieldAdresse) {
+        this.jTextFieldAdresse = jTextFieldAdresse;
+    }
+
+    public JTextField getjTextFieldCP() {
+        return jTextFieldCP;
+    }
+
+    public void setjTextFieldCP(JTextField jTextFieldCP) {
+        this.jTextFieldCP = jTextFieldCP;
+    }
+
+    public JTextField getjTextFieldEchantillon() {
+        return jTextFieldEchantillon;
+    }
+
+    public void setjTextFieldEchantillon(JTextField jTextFieldEchantillon) {
+        this.jTextFieldEchantillon = jTextFieldEchantillon;
+    }
+
+    public JTextField getjTextFieldNom() {
+        return jTextFieldNom;
+    }
+
+    public void setjTextFieldNom(JTextField jTextFieldNom) {
+        this.jTextFieldNom = jTextFieldNom;
+    }
+
+    public JTextField getjTextFieldPrenom() {
+        return jTextFieldPrenom;
+    }
+
+    public void setjTextFieldPrenom(JTextField jTextFieldPrenom) {
+        this.jTextFieldPrenom = jTextFieldPrenom;
+    }
+
+    public JTextField getjTextFieldVille() {
+        return jTextFieldVille;
+    }
+
+    public void setjTextFieldVille(JTextField jTextFieldVille) {
+        this.jTextFieldVille = jTextFieldVille;
+    }
+
+    public JTextPane getjTextPaneIndications() {
+        return jTextPaneIndications;
+    }
+
+    public void setjTextPaneIndications(JTextPane jTextPaneIndications) {
+        this.jTextPaneIndications = jTextPaneIndications;
+    }
+
+    public DefaultComboBoxModel getModelJComboBoxChercher() {
+        return modelJComboBoxChercher;
+    }
+
+    public void setModelJComboBoxChercher(DefaultComboBoxModel modelJComboBoxChercher) {
+        this.modelJComboBoxChercher = modelJComboBoxChercher;
+    }
+
+    public DefaultComboBoxModel getModelJComboBoxExercice() {
+        return modelJComboBoxExercice;
+    }
+
+    public void setModelJComboBoxExercice(DefaultComboBoxModel modelJComboBoxExercice) {
+        this.modelJComboBoxExercice = modelJComboBoxExercice;
+    }
+
+    public DefaultComboBoxModel getModelJComboBoxNotoriete() {
+        return modelJComboBoxNotoriete;
+    }
+
+    public void setModelJComboBoxNotoriete(DefaultComboBoxModel modelJComboBoxNotoriete) {
+        this.modelJComboBoxNotoriete = modelJComboBoxNotoriete;
+    }
 
     private void jButtonFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFermerActionPerformed
         try {

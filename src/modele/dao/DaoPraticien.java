@@ -9,27 +9,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import modele.jdbc.Jdbc;
-import modele.metier.Praticien;
-import modele.metier.Visiteur;
+import modele.jdbc.*;
+import modele.metier.*;
+
 
 /**
  *
  * @author btssio
  */
-public class DaoPraticien implements DaoInterface<Praticien,Integer >{
+public class DaoPraticien implements DaoInterface<Praticien, Integer>{
 
     private DaoTypePraticien daoTypePraticien = new DaoTypePraticien();
-    @Override
-    public int create(Praticien objetMetier) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
 
     @Override
     public Praticien getOne(Integer idPraticien) throws Exception {
         Praticien result = null;
         ResultSet rs = null;
-        Jdbc.getInstance().connecter();
         String requete = "SELECT * FROM PRATICIEN WHERE PRA_NUM=?";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
@@ -41,9 +38,8 @@ public class DaoPraticien implements DaoInterface<Praticien,Integer >{
             
             
         }catch (SQLException ex){
-          throw new modele.dao.DaoException("DaoPraticien::getOne : erreur requete SELECT : " + ex.getMessage()); 
+          throw new modele.dao.DaoException("DaoVisiteur::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
-        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
@@ -60,9 +56,18 @@ public class DaoPraticien implements DaoInterface<Praticien,Integer >{
                 result.add(unPraticien);
             }
         }catch (Exception e){
-            throw new modele.dao.DaoException("DaoPraticien::getAll : erreur requete SELECT : " + e.getMessage());
+            throw new modele.dao.DaoException("DaoVisiteur::getAll : erreur requete SELECT : " + e.getMessage());
         }
         return result;
+    }
+
+    
+    
+
+
+    @Override
+    public int create(Praticien objetMetier) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -74,8 +79,9 @@ public class DaoPraticien implements DaoInterface<Praticien,Integer >{
     public int delete(Integer idMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
-    private Praticien chargerUnEnregistrement(ResultSet rs) throws DaoException, Exception {
+        private Praticien chargerUnEnregistrement(ResultSet rs) throws DaoException, Exception {
         try {
             Praticien praticien = new Praticien();
             praticien.setNumero(rs.getInt("PRA_NUM"));

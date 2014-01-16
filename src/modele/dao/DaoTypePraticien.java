@@ -28,7 +28,6 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
     public TypePraticien getOne(String idType) throws Exception {
         TypePraticien result = null;
         ResultSet rs = null;
-        Jdbc.getInstance().connecter();
         String requete = "SELECT * FROM TYPE_PRATICIEN WHERE TYP_CODE=?";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
@@ -42,7 +41,6 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
         }catch (SQLException ex){
           throw new modele.dao.DaoException("DaoTypePraticien::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
-        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
