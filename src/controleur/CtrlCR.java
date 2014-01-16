@@ -302,26 +302,26 @@ public class CtrlCR extends CtrlAbstrait{
         }
         
         //affiche les échantillon du rapport
-        public void remplirEchantillons(RapportVisite unRapport){
-         try {
-             ArrayList<Echantillon> lesEchantillons = daoOffrir.getEchantillonRapport(unRapport.getNumero());
-             
-             int i = 0;
-             while(i<lesEchantillons.size()){
-                 int nbLigne = ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).getRowCount();
-                 ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(nbLigne+1);
-                 getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getMedicament(), i, 0);
-                getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getQuantite(), i, 1);
-             }
-         } catch (DaoException ex) {
-             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (Exception ex) {
-             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
-         
-            
-        }
+//        public void remplirEchantillons(RapportVisite unRapport){
+//         try {
+//             ArrayList<Echantillon> lesEchantillons = daoOffrir.getEchantillonRapport(unRapport.getNumero());
+//             
+//             int i = 0;
+//             while(i<lesEchantillons.size()){
+//                 int nbLigne = ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).getRowCount();
+//                 ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(nbLigne+1);
+//                 getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getMedicament(), i, 0);
+//                getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getQuantite(), i, 1);
+//             }
+//         } catch (DaoException ex) {
+//             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
+//         } catch (Exception ex) {
+//             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//         
+//         
+//            
+//        }
         //retourne à la visualisation des rapport après la création de l'un d'eux
         public void retourRapport() throws Exception{
             remplirRapportVisite(null, 0);
