@@ -7,6 +7,7 @@ package vue;
 import controleur.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -43,6 +44,7 @@ public class VueGCR extends VueAbstraite {
         jLabelQuitter = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelGCR = new javax.swing.JLabel();
+        jLabelAccueilVisiteur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,13 +102,17 @@ public class VueGCR extends VueAbstraite {
                 .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(jLabelGCR)
                 .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelAccueilVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabelGCR)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabelAccueilVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,17 +132,17 @@ public class VueGCR extends VueAbstraite {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelMedicaments))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCR, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCR))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonPraticiens, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelPraticiens))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonVisiteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVisiteurs))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCR, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCR)))
+                        .addComponent(jLabelVisiteurs)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,7 +169,7 @@ public class VueGCR extends VueAbstraite {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelQuitter)
                     .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,6 +215,10 @@ public class VueGCR extends VueAbstraite {
         }
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
+    public JLabel getjLabelAccueilVisiteur() {
+        return jLabelAccueilVisiteur;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCR;
@@ -216,6 +226,7 @@ public class VueGCR extends VueAbstraite {
     private javax.swing.JButton jButtonPraticiens;
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonVisiteurs;
+    private javax.swing.JLabel jLabelAccueilVisiteur;
     private javax.swing.JLabel jLabelCR;
     private javax.swing.JLabel jLabelGCR;
     private javax.swing.JLabel jLabelMedicaments;

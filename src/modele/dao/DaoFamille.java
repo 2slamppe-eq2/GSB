@@ -26,6 +26,7 @@ public class DaoFamille implements DaoInterface<Famille, String>{
 
     @Override
     public Famille getOne(String idFamille) throws Exception {
+        Jdbc.getInstance().connecter();
         Famille result = null;
         ResultSet rs = null;
         // préparer la requête
@@ -40,11 +41,13 @@ public class DaoFamille implements DaoInterface<Famille, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoFamille::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<Famille> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Famille> result = new ArrayList<Famille>();
         ResultSet rs;
         // préparer la requête
@@ -60,6 +63,7 @@ public class DaoFamille implements DaoInterface<Famille, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoFamille::getAll : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return(result);
     }
 

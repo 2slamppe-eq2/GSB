@@ -26,6 +26,7 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
 
     @Override
     public TypePraticien getOne(String idType) throws Exception {
+        Jdbc.getInstance().connecter();
         TypePraticien result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM TYPE_PRATICIEN WHERE TYP_CODE=?";
@@ -41,11 +42,13 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
         }catch (SQLException ex){
           throw new modele.dao.DaoException("DaoTypePraticien::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<TypePraticien> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<TypePraticien> result = new ArrayList<TypePraticien>();
         ResultSet rs;
         
@@ -58,8 +61,9 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
                 result.add(typePraticien);
             }
         }catch (Exception e){
-            throw new modele.dao.DaoException("DaoPraticien::getAll : erreur requete SELECT : " + e.getMessage());
+            throw new modele.dao.DaoException("DaoTypePraticien::getAll : erreur requete SELECT : " + e.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 
@@ -81,7 +85,7 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
             typePraticien.setLieu(rs.getString("TYP_LIEU"));
             return typePraticien;
         } catch (SQLException ex) {
-            throw new DaoException("DaoPraticien - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+            throw new DaoException("DaoTypePraticien - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
         }
     }
     

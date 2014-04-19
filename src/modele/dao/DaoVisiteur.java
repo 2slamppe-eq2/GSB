@@ -23,6 +23,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
     private DaoLabo daoLabo = new DaoLabo();
     @Override
     public int create(Visiteur unVisiteur) throws Exception {
+        Jdbc.getInstance().connecter();
         int rs=0;
         String requete = "INSERT INTO VISITEUR VALUES(?,?,?,?,?,?,?,?,?,?)";
         try{
@@ -38,6 +39,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
             ps.setString(9,unVisiteur.getLabo().getCode());
             ps.setString(1,unVisiteur.getLogin());
             rs = ps.executeUpdate(requete);
+            Jdbc.getInstance().deconnecter();
             return rs;
             
         }catch (SQLException e){
@@ -49,6 +51,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
 
     @Override
     public Visiteur getOne(String idVisiteur) throws Exception {
+        Jdbc.getInstance().connecter();
         Visiteur result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM VISITEUR WHERE VIS_MATRICULE=?";
@@ -64,14 +67,17 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
         }catch (SQLException ex){
           throw new modele.dao.DaoException("DaoVisiteur::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<Visiteur> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Visiteur> result = new ArrayList<Visiteur>();
         ResultSet rs;
         
+                
         String requete = "SELECT * FROM Visiteur ORDER BY VIS_NOM";
         try{
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
@@ -83,6 +89,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
         }catch (Exception e){
             throw new modele.dao.DaoException("DaoVisiteur::getAll : erreur requete SELECT : " + e.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 

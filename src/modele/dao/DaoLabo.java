@@ -23,6 +23,7 @@ public class DaoLabo implements DaoInterface<Labo, String>{
 
     @Override
     public Labo getOne(String idLabo) throws Exception {
+        Jdbc.getInstance().connecter();
         Labo result = null;
         ResultSet rs = null;
         
@@ -37,11 +38,13 @@ public class DaoLabo implements DaoInterface<Labo, String>{
         }catch (SQLException ex){
              throw new modele.dao.DaoException("DaoLabo::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 
     @Override
     public ArrayList<Labo> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Labo> result = new ArrayList<Labo>();
         ResultSet rs;
         String requete = "SELECT * FROM LABO";
@@ -58,6 +61,7 @@ public class DaoLabo implements DaoInterface<Labo, String>{
         }catch (SQLException ex){
              throw new modele.dao.DaoException("DaoLabo::getAll : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 

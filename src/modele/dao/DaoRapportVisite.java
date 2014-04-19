@@ -24,6 +24,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
     DaoPraticien daoPraticien = new DaoPraticien();
     @Override
     public int create(RapportVisite unRapport) throws Exception {
+        Jdbc.getInstance().connecter();
         int effectue;
         String requete = "INSERT INTO RAPPORT_VISITE(VIS_MATRICULE, PRA_NUM, RAP_DATE, RAP_BILAN, RAP_MOTIF) VALUES(?,?,to_date(?, 'DD/MM/YYYY'),?,?)";
         try {
@@ -37,11 +38,13 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
         }catch (Exception ex){
             throw new modele.dao.DaoException("DaoRapportVisite::create : erreur requete INSERT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return effectue;
     }
 
     @Override
     public RapportVisite getOne(Integer idRapport) throws Exception {
+       Jdbc.getInstance().connecter();
        RapportVisite result = null;
         ResultSet rs = null;
         // préparer la requête
@@ -56,11 +59,13 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoRapportVisite::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<RapportVisite> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<RapportVisite> result = new ArrayList<RapportVisite>();
         ResultSet rs;
         String requete = "SELECT * FROM RAPPORT_VISITE ORDER BY RAP_NUM";
@@ -74,6 +79,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
         }catch (Exception e){
             throw new modele.dao.DaoException("DaoRApportVisite::getAll : erreur requete SELECT : " + e.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 
@@ -88,7 +94,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
     }
     
     public int getMaxNumRapport() throws Exception{
-        
+        Jdbc.getInstance().connecter();
         int result = 0;
         ResultSet rs = null;
         // préparer la requête
@@ -102,7 +108,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoRapportVisite::getOne : erreur requete SELECT : " + ex.getMessage());
         }
-        
+        Jdbc.getInstance().deconnecter();
         return (result);
         
     }
@@ -120,7 +126,7 @@ public class DaoRapportVisite implements DaoInterface<RapportVisite, Integer>{
             
             return rapportVisite;
         } catch (SQLException ex) {
-            throw new DaoException("DaoPraticien - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+            throw new DaoException("DaoRapportVisite - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
         }
     }
 

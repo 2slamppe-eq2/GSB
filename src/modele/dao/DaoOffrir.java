@@ -23,6 +23,7 @@ public class DaoOffrir {
     private DaoRapportVisite daoRapportVisite = new DaoRapportVisite();
     
     public int create(Echantillon unEchantillon) throws Exception {
+        Jdbc.getInstance().connecter();
         int effectue;
         String requete = "INSERT INTO OFFRIR(VIS_MATRICULE, RAP_NUM, MED_DEPOTLEGAL, OFF_QTE) VALUES(?,?,?,?)";
         try {
@@ -35,10 +36,12 @@ public class DaoOffrir {
         }catch (Exception ex){
             throw new modele.dao.DaoException("DaoOffrir::create : erreur requete INSERT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return effectue;
     }
     
     public ArrayList<Echantillon> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Echantillon> result = new ArrayList<Echantillon>();
         ResultSet rs;
         // préparer la requête
@@ -54,10 +57,12 @@ public class DaoOffrir {
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoOffrir::getAll : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return(result);
     }
     
     public Echantillon getOne(String matriculeVis, String depotLegal, int rapport) throws Exception {
+        Jdbc.getInstance().connecter();
         Echantillon result = null;
         ResultSet rs = null;
         // préparer la requête
@@ -73,11 +78,13 @@ public class DaoOffrir {
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoOffrir::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
     
     public ArrayList<Echantillon> getEchantillonRapport(int unRapport) throws DaoException, Exception{
-       ArrayList<Echantillon> result = new ArrayList<Echantillon>();
+        Jdbc.getInstance().connecter();
+        ArrayList<Echantillon> result = new ArrayList<Echantillon>();
         ResultSet rs;
         // préparer la requête
         String requete = "SELECT * FROM OFFRIR WHERE RAP_NUM=?";
@@ -93,6 +100,7 @@ public class DaoOffrir {
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoOffrir::getEchantillonRapport : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return(result);
     }
     private Echantillon chargerUnEnregistrement(ResultSet rs) throws DaoException, Exception {

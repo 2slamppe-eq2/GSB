@@ -25,6 +25,7 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
 
     @Override
     public Praticien getOne(Integer idPraticien) throws Exception {
+        Jdbc.getInstance().connecter();
         Praticien result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM PRATICIEN WHERE PRA_NUM=?";
@@ -38,13 +39,15 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
             
             
         }catch (SQLException ex){
-          throw new modele.dao.DaoException("DaoVisiteur::getOne : erreur requete SELECT : " + ex.getMessage()); 
+          throw new modele.dao.DaoException("DaoPraticien::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<Praticien> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Praticien> result = new ArrayList<Praticien>();
         ResultSet rs;
         String requete = "SELECT * FROM PRATICIEN ORDER BY PRA_NUM";
@@ -56,8 +59,9 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
                 result.add(unPraticien);
             }
         }catch (Exception e){
-            throw new modele.dao.DaoException("DaoVisiteur::getAll : erreur requete SELECT : " + e.getMessage());
+            throw new modele.dao.DaoException("DaoPraticien::getAll : erreur requete SELECT : " + e.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return result;
     }
 

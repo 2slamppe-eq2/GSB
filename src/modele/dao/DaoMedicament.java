@@ -27,6 +27,7 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
 
     @Override
     public Medicament getOne(String idMedicament) throws Exception {
+        Jdbc.getInstance().connecter();
         Medicament result = null;
         ResultSet rs = null;
         // préparer la requête
@@ -41,11 +42,13 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoMedicament::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<Medicament> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Medicament> result = new ArrayList<Medicament>();
         ResultSet rs;
         // préparer la requête
@@ -61,6 +64,7 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoMedicament::getAll : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return(result);
     }
 
@@ -78,7 +82,7 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
             Medicament medicament = new Medicament();
             medicament.setDepotLegal(rs.getString("MED_DEPOTLEGAL"));
             medicament.setNomCommercial(rs.getString("MED_NOMCOMMERCIAL"));
-//            medicament.setFamille(daoFamille.getOne(rs.getString("FAM_CODE")));
+ //           medicament.setFamille(daoFamille.getOne(rs.getString("FAM_CODE")));
             medicament.setComposition(rs.getString("MED_COMPOSITION"));
             medicament.setEffet(rs.getString("MED_EFFETS"));
             medicament.setContreIndic(rs.getString("MED_CONTREINDIC"));
@@ -86,7 +90,7 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
             
             return medicament;
         } catch (SQLException ex) {
-            throw new DaoException("DaoSecteur - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
+            throw new DaoException("DaoMedicament - chargerUnEnregistrement : pb JDBC\n" + ex.getMessage());
         }
     }
     

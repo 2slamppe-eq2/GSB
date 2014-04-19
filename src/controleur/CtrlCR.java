@@ -80,7 +80,7 @@ public class CtrlCR extends CtrlAbstrait{
         getVue().getjTextFieldDate().setText(date);//remplir le champs date avec la date du jour
         
         int dernierRapport = daoRapportVisite.getMaxNumRapport();
-        getVue().getjTextFieldNum().setText(String.valueOf(dernierRapport));//affiche le numéro du nouveau rapport
+        getVue().getjTextFieldNum().setText(String.valueOf(dernierRapport+1));//affiche le numéro du nouveau rapport
         //rends les boutons spécifique à l'ajout d'un nouveau rapport visible
         visibiliteBouton(true);
         getVue().getjTableEchantillon().removeAll();
@@ -89,14 +89,14 @@ public class CtrlCR extends CtrlAbstrait{
     //enregistre le rapport dans la base
     public void enregistrer() throws Exception{
         RapportVisite rapportVisite = new RapportVisite();//creer un nouvel objet RapportVisite
-        Visiteur visiteurActuel = new Visiteur();//obtient le visiteur concerné par ce rapport, ce devrait être le visiteur connecté mais actuellement il y a un mot de passe et un utilisateur unique pour l'application
-        visiteurActuel.setMatricule("zzz");//un visiteur de la base de données
+//        Visiteur visiteurActuel = new Visiteur();//obtient le visiteur concerné par ce rapport, ce devrait être le visiteur connecté mais actuellement il y a un mot de passe et un utilisateur unique pour l'application
+//        visiteurActuel.setMatricule("zzz");//un visiteur de la base de données
         //les valeur des champs sont récupérée pour rcompleter les valeur des attributs de ce nouveau rapport
         rapportVisite.setBilan(getVue().getjTextAreaBilan().getText());
         rapportVisite.setMotif(getVue().getjTextFieldMotif().getText());
         rapportVisite.setNumero(Integer.parseInt(getVue().getjTextFieldNum().getText()));
         rapportVisite.setPraticien((Praticien)getVue().getjComboBoxPraticien().getSelectedItem());
-        rapportVisite.setVisiteur(visiteurActuel);
+        rapportVisite.setVisiteur(ctrlPrincipal.getVisiteurConnecte());
         //création d'une date du même format que celui de la base de données
         String [] dateSaisie = getVue().getjTextFieldDate().getText().split("-");
         rapportVisite.setDateDeSaisieString(dateSaisie[2]+"/"+dateSaisie[1]+"/"+dateSaisie[0].substring(2));
@@ -268,8 +268,8 @@ public class CtrlCR extends CtrlAbstrait{
                 //récupère le médicament sélectionné               
                 Medicament leMedicament = (Medicament) medicament.getSelectedItem();
                 //récupère la quantite d'échantillon
-                if(quantite.getText()!=""){
-                Integer.parseInt(quantite.getText());
+                if(!quantite.getText().equals("")){
+                qte = Integer.parseInt(quantite.getText());
                 }else{
                     JOptionPane.showMessageDialog(null, "veuillez saisir une quantité pour ce médicament");
                 }
@@ -283,6 +283,7 @@ public class CtrlCR extends CtrlAbstrait{
                        JOptionPane.showMessageDialog(null, "Un échantillon ne peut être saisi qu'une seule fois par rapport"); 
                        medicamentSaisi = true;
                     }
+                    i++;
                 }
                 if(!medicamentSaisi){
                 ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(nbLigne+1);
@@ -298,7 +299,7 @@ public class CtrlCR extends CtrlAbstrait{
         }
         //supprime l'échantillon sélectionné
         public void supprimerMedicament(){
-            getVue().getjTableEchantillon().remove(getVue().getjTableEchantillon().getSelectedRow());
+            getVue().getjTableEchantillon().remove(getVue().getjTableEchantillon().getSelectedRow()-1);
         }
         
         //affiche les échantillon du rapport

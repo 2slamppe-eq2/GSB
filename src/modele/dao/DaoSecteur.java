@@ -24,6 +24,7 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
 
     @Override
     public Secteur getOne(String idSecteur) throws Exception {
+        Jdbc.getInstance().connecter();
         Secteur result = null;
         ResultSet rs = null;
         // préparer la requête
@@ -38,11 +39,13 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoSecteur::getOne : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return (result);
     }
 
     @Override
     public ArrayList<Secteur> getAll() throws Exception {
+        Jdbc.getInstance().connecter();
         ArrayList<Secteur> result = new ArrayList<Secteur>();
         ResultSet rs;
         // préparer la requête
@@ -58,6 +61,7 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoSecteur::getAll : erreur requete SELECT : " + ex.getMessage());
         }
+        Jdbc.getInstance().deconnecter();
         return(result);
     }
 

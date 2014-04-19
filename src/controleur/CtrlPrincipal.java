@@ -26,6 +26,17 @@ public class CtrlPrincipal {
     private CtrlVisiteur ctrlVisiteur = null;
     private Visiteur VisiteurConnecte = null;
     
+    
+    public Visiteur getVisiteurConnecte()
+    {
+        return this.VisiteurConnecte;
+    }
+    
+    public void setVisiteurConnecte(Visiteur unVisiteur)
+    {
+        this.VisiteurConnecte = unVisiteur;
+    }
+    
     public void action(){
         if(ctrlConnexion == null){
             ctrlConnexion = new CtrlConnexion(this);
@@ -76,6 +87,10 @@ public class CtrlPrincipal {
         }
     }
     
+    
+    
+    
+    
     public void AfficherPraticien(Praticien unPraticien) throws Exception{
         if(ctrlPraticien == null){
             ctrlPraticien = new CtrlPraticien(this);
@@ -93,19 +108,14 @@ public class CtrlPrincipal {
         if(ctrlGCR == null){
             ctrlGCR = new CtrlGCR(this);
         }
+        ctrlGCR.getVue().getjLabelAccueilVisiteur().setText("Bonjour "+this.VisiteurConnecte.getPrenom()+" "+this.VisiteurConnecte.getNom());
         ctrlGCR.getVue().setEnabled(true);
         ctrlGCR.getVue().setVisible(true);
         ctrlConnexion.getVue().setVisible(false);
         
     }
 
-    public Visiteur getVisiteurConnecte() {
-        return VisiteurConnecte;
-    }
 
-    public void setVisiteurConnecte(Visiteur VisiteurConnecte) {
-        this.VisiteurConnecte = VisiteurConnecte;
-    }
     //affiche la vueCR
     private void afficherCR () throws Exception{
         
@@ -127,6 +137,8 @@ public class CtrlPrincipal {
     
         if(ctrlMedicament == null){
             ctrlMedicament = new CtrlMedicament(this);
+            ctrlMedicament.chargerListeMedicaments();
+            ctrlMedicament.remplirMedicament(null, 0);
             
         }
         ctrlMedicament.getVue().setEnabled(true);

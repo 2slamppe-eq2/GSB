@@ -8,6 +8,10 @@ import controleur.CtrlAbstrait;
 import controleur.CtrlMedicament;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,12 +19,16 @@ import java.util.logging.Logger;
  */
 public class VueMedicament extends VueAbstraite {
 
+    DefaultComboBoxModel defaultComboBoxModelMedicament;
     /**
      * Creates new form JFrameMedicament
      */
     public VueMedicament(CtrlAbstrait ctrl) {
         super(ctrl);
         initComponents();
+        defaultComboBoxModelMedicament = new DefaultComboBoxModel();
+        jComboBoxMedicament.setModel(defaultComboBoxModelMedicament);
+        
     }
 
     /**
@@ -32,6 +40,7 @@ public class VueMedicament extends VueAbstraite {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabelMedicaments = new javax.swing.JLabel();
         jLabelCode = new javax.swing.JLabel();
         jTextFieldCode = new javax.swing.JTextField();
@@ -40,7 +49,7 @@ public class VueMedicament extends VueAbstraite {
         jLabelComposition = new javax.swing.JLabel();
         jLabelEffets = new javax.swing.JLabel();
         jLabelCIndications = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldNomCom = new javax.swing.JTextField();
         jTextFieldFamille = new javax.swing.JTextField();
         jTextFieldComposation = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,6 +59,12 @@ public class VueMedicament extends VueAbstraite {
         jLabelPrix = new javax.swing.JLabel();
         jTextFieldPrix = new javax.swing.JTextField();
         jButtonFermer = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jComboBoxMedicament = new javax.swing.JComboBox();
+        jLabelChercher = new javax.swing.JLabel();
+        jButtonOk = new javax.swing.JButton();
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,38 +99,53 @@ public class VueMedicament extends VueAbstraite {
             }
         });
 
+        jComboBoxMedicament.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMedicament.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMedicamentActionPerformed(evt);
+            }
+        });
+
+        jLabelChercher.setText("Chercher");
+
+        jButtonOk.setText("OK");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelPrix)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCIndications)
-                            .addComponent(jLabelEffets))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNomCom)
                             .addComponent(jLabelCode)
                             .addComponent(jLabelFamille)
                             .addComponent(jLabelComposition))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldNomCom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                            .addComponent(jTextFieldFamille, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldComposation)
+                            .addComponent(jTextFieldCode, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCIndications)
+                            .addComponent(jLabelEffets)
+                            .addComponent(jLabelPrix))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldComposation)
-                            .addComponent(jTextFieldFamille)
-                            .addComponent(jTextFieldCode)
-                            .addComponent(jTextField2))))
-                .addContainerGap(134, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2))))
+                .addGap(114, 114, 114))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,19 +155,34 @@ public class VueMedicament extends VueAbstraite {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonFermer)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabelChercher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(jComboBoxMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonOk)
+                .addGap(118, 118, 118))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabelMedicaments)
-                .addGap(41, 41, 41)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelChercher)
+                    .addComponent(jButtonOk))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCode)
                     .addComponent(jTextFieldCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNomCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNomCom))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,7 +192,7 @@ public class VueMedicament extends VueAbstraite {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComposition)
                     .addComponent(jTextFieldComposation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEffets)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,11 +200,11 @@ public class VueMedicament extends VueAbstraite {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCIndications)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPrix)
                     .addComponent(jTextFieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(76, 76, 76)
                 .addComponent(jButtonFermer)
                 .addContainerGap())
         );
@@ -175,9 +220,92 @@ public class VueMedicament extends VueAbstraite {
         }
     }//GEN-LAST:event_jButtonFermerActionPerformed
 
+    private void jComboBoxMedicamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicamentActionPerformed
+        try {
+            ((CtrlMedicament)controleur).choixMedicament();
+        } catch (Exception ex) {
+            Logger.getLogger(VueMedicament.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBoxMedicamentActionPerformed
+
+    public DefaultComboBoxModel getDefaultComboBoxModelMedicament() {
+        return defaultComboBoxModelMedicament;
+    }
+
+    public void setDefaultComboBoxModelMedicament(DefaultComboBoxModel defaultComboBoxModelMedicament) {
+        this.defaultComboBoxModelMedicament = defaultComboBoxModelMedicament;
+    }
+
+    public JComboBox getjComboBoxMedicament() {
+        return jComboBoxMedicament;
+    }
+
+    public void setjComboBoxMedicament(JComboBox jComboBoxMedicament) {
+        this.jComboBoxMedicament = jComboBoxMedicament;
+    }
+
+    public JTextArea getjTextAreaCIndications() {
+        return jTextAreaCIndications;
+    }
+
+    public void setjTextAreaCIndications(JTextArea jTextAreaCIndications) {
+        this.jTextAreaCIndications = jTextAreaCIndications;
+    }
+
+    public JTextArea getjTextAreaEffets() {
+        return jTextAreaEffets;
+    }
+
+    public void setjTextAreaEffets(JTextArea jTextAreaEffets) {
+        this.jTextAreaEffets = jTextAreaEffets;
+    }
+
+    public JTextField getjTextFieldCode() {
+        return jTextFieldCode;
+    }
+
+    public void setjTextFieldCode(JTextField jTextFieldCode) {
+        this.jTextFieldCode = jTextFieldCode;
+    }
+
+    public JTextField getjTextFieldComposation() {
+        return jTextFieldComposation;
+    }
+
+    public void setjTextFieldComposation(JTextField jTextFieldComposation) {
+        this.jTextFieldComposation = jTextFieldComposation;
+    }
+
+    public JTextField getjTextFieldFamille() {
+        return jTextFieldFamille;
+    }
+
+    public void setjTextFieldFamille(JTextField jTextFieldFamille) {
+        this.jTextFieldFamille = jTextFieldFamille;
+    }
+
+    public JTextField getjTextFieldNomCom() {
+        return jTextFieldNomCom;
+    }
+
+    public void setjTextFieldNomCom(JTextField jTextFieldNomCom) {
+        this.jTextFieldNomCom = jTextFieldNomCom;
+    }
+
+    public JTextField getjTextFieldPrix() {
+        return jTextFieldPrix;
+    }
+
+    public void setjTextFieldPrix(JTextField jTextFieldPrix) {
+        this.jTextFieldPrix = jTextFieldPrix;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFermer;
+    private javax.swing.JButton jButtonOk;
+    private javax.swing.JComboBox jComboBoxMedicament;
     private javax.swing.JLabel jLabelCIndications;
+    private javax.swing.JLabel jLabelChercher;
     private javax.swing.JLabel jLabelCode;
     private javax.swing.JLabel jLabelComposition;
     private javax.swing.JLabel jLabelEffets;
@@ -185,14 +313,16 @@ public class VueMedicament extends VueAbstraite {
     private javax.swing.JLabel jLabelMedicaments;
     private javax.swing.JLabel jLabelNomCom;
     private javax.swing.JLabel jLabelPrix;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextAreaCIndications;
     private javax.swing.JTextArea jTextAreaEffets;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldCode;
     private javax.swing.JTextField jTextFieldComposation;
     private javax.swing.JTextField jTextFieldFamille;
+    private javax.swing.JTextField jTextFieldNomCom;
     private javax.swing.JTextField jTextFieldPrix;
     // End of variables declaration//GEN-END:variables
 }
