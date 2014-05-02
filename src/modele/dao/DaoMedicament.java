@@ -33,9 +33,9 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
         // préparer la requête
         String requete = "SELECT * FROM MEDICAMENT WHERE MED_DEPOTLEGAL=?";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idMedicament);
-            rs = ps.executeQuery();
+            ArrayList<String> params = new ArrayList<>();
+            params.add(idMedicament);
+            rs = Jdbc.getInstance().consulter(requete, params);
             if (rs.next()) {
                 result = chargerUnEnregistrement(rs);
             }
@@ -54,8 +54,7 @@ public class DaoMedicament implements DaoInterface<Medicament, String>{
         // préparer la requête
         String requete = "SELECT * FROM MEDICAMENT";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
             // Charger les enregistrements dans la collection
             while (rs.next()) {
                 Medicament unMedicament = chargerUnEnregistrement(rs);

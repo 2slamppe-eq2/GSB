@@ -33,8 +33,11 @@ public class CtrlGCR extends CtrlAbstrait{
         this.ctrlPrincipal = ctrlPrincipal;
     }
     
-    
-    public void OuvrirVueCR() throws Exception{
+    /**
+     * Appelle le controleur principal qui affiche la vue VueCR permettant de consulter les rapports de visite
+     * @throws Exception 
+     */
+    public void OuvrirVueCR() throws Exception{ 
         this.getCtrlPrincipal().action(EnumAction.CR_AFFICHER);
     }
     

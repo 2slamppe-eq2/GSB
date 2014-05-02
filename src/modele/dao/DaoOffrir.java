@@ -24,18 +24,23 @@ public class DaoOffrir {
     
     public int create(Echantillon unEchantillon) throws Exception {
         Jdbc.getInstance().connecter();
-        int effectue;
+        int effectue = 0;
         String requete = "INSERT INTO OFFRIR(VIS_MATRICULE, RAP_NUM, MED_DEPOTLEGAL, OFF_QTE) VALUES(?,?,?,?)";
+        ResultSet rs = null;
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1,unEchantillon.getRapport().getVisiteur().getMatricule());
-            ps.setInt(2, unEchantillon.getRapport().getNumero());
-            ps.setString(3, unEchantillon.getMedicament().getDepotLegal());
-            ps.setInt(4,unEchantillon.getQuantite());
-            effectue = ps.executeUpdate();
+             
+            ArrayList<Object> params = new ArrayList<>();
+            params.add(unEchantillon.getRapport().getVisiteur().getMatricule());
+            params.add(unEchantillon.getRapport().getNumero());
+            params.add(unEchantillon.getMedicament().getDepotLegal());
+            params.add(unEchantillon.getQuantite());
+            effectue = Jdbc.getInstance().mettreAJour(requete, params);
+            
         }catch (Exception ex){
+            
             throw new modele.dao.DaoException("DaoOffrir::create : erreur requete INSERT : " + ex.getMessage());
         }
+        
         Jdbc.getInstance().deconnecter();
         return effectue;
     }
@@ -47,8 +52,7 @@ public class DaoOffrir {
         // préparer la requête
         String requete = "SELECT * FROM OFFRIR";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+           rs = Jdbc.getInstance().consulter(requete);
             // Charger les enregistrements dans la collection
             while (rs.next()) {
                 Echantillon unEchantillon = chargerUnEnregistrement(rs);
@@ -67,11 +71,11 @@ public class DaoOffrir {
         ResultSet rs = null;
         // préparer la requête
         String requete = "SELECT * FROM OFFRIR WHERE MED_DEPOTLEGAL=? AND RAP_NUM=?";
-        try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);            
-            ps.setString(1, depotLegal);
-            ps.setInt(2,rapport);
-            rs = ps.executeQuery();
+        ArrayList<Object> params = new ArrayList<>();
+        try {           
+            params.add(depotLegal);
+            params.add(rapport);
+            rs = Jdbc.getInstance().consulter(requete,params);
             if (rs.next()) {
                 result = chargerUnEnregistrement(rs);
             }
@@ -89,9 +93,9 @@ public class DaoOffrir {
         // préparer la requête
         String requete = "SELECT * FROM OFFRIR WHERE RAP_NUM=?";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setInt(1,unRapport);
-            rs = ps.executeQuery();
+            ArrayList<Object> params = new ArrayList<>();
+            params.add(unRapport);
+            rs = Jdbc.getInstance().consulter(requete, params);
             // Charger les enregistrements dans la collection
             while (rs.next()) {
                 Echantillon unEchantillon = chargerUnEnregistrement(rs);

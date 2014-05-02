@@ -2,6 +2,8 @@ package modele.jdbc;
 
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Singleton fournit un objet de connexion JDBC
@@ -70,27 +72,32 @@ public class Jdbc implements JdbcInterface {
     }
 
     @Override
-    public void debuterTransaction() throws SQLException {
-        getConnexion().setAutoCommit(false);
+    public void debuterTransaction() throws SQLException {       
+            getConnexion().setAutoCommit(false);
     }
 
     @Override
     public void validerTransaction() throws SQLException {
         getConnexion().commit();
         getConnexion().setAutoCommit(true);
+        
     }
 
     @Override
     public void annulerTransaction() throws SQLException {
         getConnexion().rollback();
-//        getConnexion().setAutoCommit(true);
+        getConnexion().setAutoCommit(true);
+        
     }
 
     @Override
     public ResultSet consulter(String requete) throws SQLException {
+        
         ResultSet rs;
         Statement st = getConnexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         rs = st.executeQuery(requete);
+        
+        
         return rs;
     }
 
@@ -102,8 +109,8 @@ public class Jdbc implements JdbcInterface {
         for (Object o : param) {
             ps.setObject(++index, o);
         }
-        rs = ps.executeQuery();
-        return rs;
+        rs = ps.executeQuery();         
+        return rs;       
     }
 
     @Override

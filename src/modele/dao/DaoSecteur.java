@@ -27,19 +27,20 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
         Jdbc.getInstance().connecter();
         Secteur result = null;
         ResultSet rs = null;
+        ArrayList<Object> params = new ArrayList<>();
+        params.add(idSecteur);
         // préparer la requête
         String requete = "SELECT * FROM SECTEUR WHERE SEC_CODE=?";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idSecteur);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete, params);
+                    
             if (rs.next()) {
                 result = chargerUnEnregistrement(rs);
             }
         } catch (SQLException ex) {
             throw new modele.dao.DaoException("DaoSecteur::getOne : erreur requete SELECT : " + ex.getMessage());
         }
-        Jdbc.getInstance().deconnecter();
+       Jdbc.getInstance().deconnecter();
         return (result);
     }
 
@@ -51,8 +52,8 @@ public class DaoSecteur implements DaoInterface<Secteur, String>{
         // préparer la requête
         String requete = "SELECT * FROM SECTEUR";
         try {
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
+                    
             // Charger les enregistrements dans la collection
             while (rs.next()) {
                 Secteur unSecteur = chargerUnEnregistrement(rs);

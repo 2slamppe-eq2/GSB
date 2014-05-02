@@ -25,14 +25,14 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
 
     @Override
     public Praticien getOne(Integer idPraticien) throws Exception {
-        Jdbc.getInstance().connecter();
+       Jdbc.getInstance().connecter();
         Praticien result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM PRATICIEN WHERE PRA_NUM=?";
+        ArrayList<Object> params = new ArrayList<>();
+        params.add(idPraticien);
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setInt(1, idPraticien);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete, params);
             if(rs.next()){
                 result = chargerUnEnregistrement(rs);
             }
@@ -41,7 +41,7 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
         }catch (SQLException ex){
           throw new modele.dao.DaoException("DaoPraticien::getOne : erreur requete SELECT : " + ex.getMessage()); 
         }
-        Jdbc.getInstance().deconnecter();
+       Jdbc.getInstance().deconnecter();
         return (result);
     }
 
@@ -52,8 +52,7 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
         ResultSet rs;
         String requete = "SELECT * FROM PRATICIEN ORDER BY PRA_NUM";
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
             while (rs.next()){
                 Praticien unPraticien = chargerUnEnregistrement(rs);
                 result.add(unPraticien);
@@ -94,7 +93,7 @@ public class DaoPraticien implements DaoInterface<Praticien, Integer>{
             praticien.setAdresse(rs.getString("PRA_ADRESSE"));
             praticien.setCp(rs.getString("PRA_CP"));
             praticien.setVille(rs.getString("PRA_VILLE"));
-            praticien.setCoefNotoriete(rs.getFloat("PRA_COEFNOTORIETE"));
+            praticien.setCoefNotoriete((float)rs.getObject("PRA_COEFNOTORIETE"));
             praticien.setType(daoTypePraticien.getOne(rs.getString("TYP_CODE")));
             return praticien;
         } catch (SQLException ex) {

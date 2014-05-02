@@ -30,10 +30,10 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
         TypePraticien result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM TYPE_PRATICIEN WHERE TYP_CODE=?";
+        ArrayList<Object> params = new ArrayList<>();
+        params.add(idType);
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idType);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete, params);
             if(rs.next()){
                 result = chargerUnEnregistrement(rs);
             }
@@ -54,8 +54,7 @@ public class DaoTypePraticien implements DaoInterface<TypePraticien, String> {
         
         String requete = "SELECT * FROM TYPE_PRATICIEN ORDER BY TYP_CODE";
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
             while (rs.next()){
                 TypePraticien typePraticien = chargerUnEnregistrement(rs);
                 result.add(typePraticien);

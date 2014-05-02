@@ -81,16 +81,16 @@ public class CtrlCR extends CtrlAbstrait{
         
         int dernierRapport = daoRapportVisite.getMaxNumRapport();
         getVue().getjTextFieldNum().setText(String.valueOf(dernierRapport+1));//affiche le numéro du nouveau rapport
+        ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(0);
+        getVue().getjTableEchantillon().removeAll();
         //rends les boutons spécifique à l'ajout d'un nouveau rapport visible
         visibiliteBouton(true);
-        getVue().getjTableEchantillon().removeAll();
         
     }
     //enregistre le rapport dans la base
     public void enregistrer() throws Exception{
         RapportVisite rapportVisite = new RapportVisite();//creer un nouvel objet RapportVisite
-//        Visiteur visiteurActuel = new Visiteur();//obtient le visiteur concerné par ce rapport, ce devrait être le visiteur connecté mais actuellement il y a un mot de passe et un utilisateur unique pour l'application
-//        visiteurActuel.setMatricule("zzz");//un visiteur de la base de données
+
         //les valeur des champs sont récupérée pour rcompleter les valeur des attributs de ce nouveau rapport
         rapportVisite.setBilan(getVue().getjTextAreaBilan().getText());
         rapportVisite.setMotif(getVue().getjTextFieldMotif().getText());
@@ -104,9 +104,9 @@ public class CtrlCR extends CtrlAbstrait{
         int effectue = daoRapportVisite.create(rapportVisite);
         LesRapportsVisites=null;//remise à zero des rapports visite pour remettre à jour la base ors du prochain getAll
         //insertion dans la table OFFRIR
-        effectue = enregistrerLesEchantillons(getLesRapports().get(getLesRapports().size()-1));
+        effectue = enregistrerLesEchantillons(daoRapportVisite.getOne(effectue));
         
-        if(effectue==1){
+        if(effectue>0){
                 JOptionPane.showMessageDialog(null, "Rapport enregistré!");
         }else{
             JOptionPane.showMessageDialog(null, "Erreur lors de la saisie du rapport!");
@@ -118,15 +118,16 @@ public class CtrlCR extends CtrlAbstrait{
     //insertion des echantillon entrée durant le rapport de viste dans la table OFFRIR
     public int enregistrerLesEchantillons(RapportVisite unRapport) throws Exception{
         int effectue = 1;
-        int i =0;
+        int i = 0;
         int nbLigne = ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).getRowCount();
         //parcourt les lignes du tableaux d'échantillon
-        while(i < nbLigne && effectue==1){
+        while(i < nbLigne){
             Echantillon unEchantillon = new Echantillon();
             unEchantillon.setRapport(unRapport);
             unEchantillon.setMedicament((Medicament)getVue().getjTableEchantillon().getValueAt(i, 0));
             unEchantillon.setQuantite((int)getVue().getjTableEchantillon().getValueAt(i, 1));
             effectue = daoOffrir.create(unEchantillon);
+            i++;
             
         }
         return effectue;
@@ -166,7 +167,7 @@ public class CtrlCR extends CtrlAbstrait{
         getVue().getjTextFieldDate().setText(unRapport.getDateDeSaisie().toString());
         getVue().getjTextFieldMotif().setText(unRapport.getMotif());
         getVue().getjTextFieldNum().setText(String.valueOf(unRapport.getNumero()));
-        //remplirEchantillons(unRapport);
+        remplirEchantillons(unRapport);
     }
     //lors du clic sur le bouton suivant , on affiche le rapport de visite suivant
      public void suivant() throws Exception{        
@@ -299,30 +300,37 @@ public class CtrlCR extends CtrlAbstrait{
         }
         //supprime l'échantillon sélectionné
         public void supprimerMedicament(){
-            getVue().getjTableEchantillon().remove(getVue().getjTableEchantillon().getSelectedRow()-1);
+            int [] index = getVue().getjTableEchantillon().getSelectedRows();
+            DefaultTableModel modelJTableEchantillon = (DefaultTableModel) getVue().getjTableEchantillon().getModel();
+            for(int i = index.length; i>0;i = i-1){              
+               modelJTableEchantillon.removeRow(index[i-1]);
+            }
+            
         }
         
         //affiche les échantillon du rapport
-//        public void remplirEchantillons(RapportVisite unRapport){
-//         try {
-//             ArrayList<Echantillon> lesEchantillons = daoOffrir.getEchantillonRapport(unRapport.getNumero());
-//             
-//             int i = 0;
-//             while(i<lesEchantillons.size()){
-//                 int nbLigne = ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).getRowCount();
-//                 ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(nbLigne+1);
-//                 getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getMedicament(), i, 0);
-//                getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getQuantite(), i, 1);
-//             }
-//         } catch (DaoException ex) {
-//             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
-//         } catch (Exception ex) {
-//             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
-//         }
-//         
-//         
-//            
-//        }
+        public void remplirEchantillons(RapportVisite unRapport){
+         try {
+             ArrayList<Echantillon> lesEchantillons = daoOffrir.getEchantillonRapport(unRapport.getNumero());
+             getVue().getjTableEchantillon().removeAll();
+             ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(0);
+             int i = 0;
+             while(i<lesEchantillons.size()){
+                 int nbLigne = ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).getRowCount();
+                 ((DefaultTableModel) getVue().getjTableEchantillon().getModel()).setRowCount(nbLigne+1);
+                 getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getMedicament(), i, 0);
+                getVue().getjTableEchantillon().setValueAt(lesEchantillons.get(i).getQuantite(), i, 1);
+                i++;
+             }
+         } catch (DaoException ex) {
+             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (Exception ex) {
+             Logger.getLogger(CtrlCR.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         
+            
+        }
         //retourne à la visualisation des rapport après la création de l'un d'eux
         public void retourRapport() throws Exception{
             remplirRapportVisite(null, 0);

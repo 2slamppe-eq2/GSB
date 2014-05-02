@@ -23,15 +23,15 @@ public class DaoLabo implements DaoInterface<Labo, String>{
 
     @Override
     public Labo getOne(String idLabo) throws Exception {
-        Jdbc.getInstance().connecter();
+       Jdbc.getInstance().connecter();
         Labo result = null;
         ResultSet rs = null;
         
         String requete = "SELECT * FROM LABO WHERE LAB_CODE=?";
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idLabo);
-            rs = ps.executeQuery();
+            ArrayList<String> params = new ArrayList<>();
+            params.add(idLabo);
+            rs = Jdbc.getInstance().consulter(requete,params);
             if(rs.next()){
                 result = chargerUnEnregistrement(rs);
             }
@@ -49,8 +49,7 @@ public class DaoLabo implements DaoInterface<Labo, String>{
         ResultSet rs;
         String requete = "SELECT * FROM LABO";
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
             
             while(rs.next()){
                 Labo labo = chargerUnEnregistrement(rs);

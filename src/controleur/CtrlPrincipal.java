@@ -37,7 +37,7 @@ public class CtrlPrincipal {
         this.VisiteurConnecte = unVisiteur;
     }
     
-    public void action(){
+    public void action() throws ClassNotFoundException, SQLException{
         if(ctrlConnexion == null){
             ctrlConnexion = new CtrlConnexion(this);
         }
@@ -189,11 +189,7 @@ public class CtrlPrincipal {
     //ferme la vueCR
     private void quitterGCR(){
         //deconnexion de la base de données
-        try {
-            Jdbc.getInstance().deconnecter();
-        } catch (SQLException ex) {
-            Logger.getLogger(CtrlPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
        System.exit(0);
         
     }
@@ -222,8 +218,7 @@ public class CtrlPrincipal {
         
     }
     //ferme la vueCR
-    private void quitterConnexion(){
-        
+    private void quitterConnexion() throws SQLException{
         System.exit(0);
     }
     

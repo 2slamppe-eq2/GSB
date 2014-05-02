@@ -23,7 +23,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
     private DaoLabo daoLabo = new DaoLabo();
     @Override
     public int create(Visiteur unVisiteur) throws Exception {
-        Jdbc.getInstance().connecter();
+        
         int rs=0;
         String requete = "INSERT INTO VISITEUR VALUES(?,?,?,?,?,?,?,?,?,?)";
         try{
@@ -39,7 +39,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
             ps.setString(9,unVisiteur.getLabo().getCode());
             ps.setString(1,unVisiteur.getLogin());
             rs = ps.executeUpdate(requete);
-            Jdbc.getInstance().deconnecter();
+            
             return rs;
             
         }catch (SQLException e){
@@ -55,10 +55,10 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
         Visiteur result = null;
         ResultSet rs = null;
         String requete = "SELECT * FROM VISITEUR WHERE VIS_MATRICULE=?";
+        ArrayList<Object> params = new ArrayList<>();
+        params.add(idVisiteur);
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            ps.setString(1, idVisiteur);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete, params);
             if(rs.next()){
                 result = chargerUnEnregistrement(rs);
             }
@@ -80,8 +80,7 @@ public class DaoVisiteur implements DaoInterface<Visiteur, String>{
                 
         String requete = "SELECT * FROM Visiteur ORDER BY VIS_NOM";
         try{
-            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
-            rs = ps.executeQuery();
+            rs = Jdbc.getInstance().consulter(requete);
             while (rs.next()){
                 Visiteur unVisiteur = chargerUnEnregistrement(rs);
                 result.add(unVisiteur);
